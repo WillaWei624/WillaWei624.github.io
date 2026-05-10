@@ -247,7 +247,7 @@ var ppT = {
 
 function togglePPLang() {
   ppLang = ppLang === 'en' ? 'zh' : 'en';
-  document.getElementById('pp-lang-toggle').textContent = ppLang === 'en' ? '中文' : 'EN';
+  document.getElementById('pp-lang-toggle').textContent = ppLang === 'en' ? '中文模式' : 'English Mode';
   var i = ppLang === 'en' ? 0 : 1;
   for (var id in ppT) {
     var el = document.getElementById(id);
@@ -261,7 +261,7 @@ function togglePPLang() {
 <nav>
   <a href="index.html" class="nav-back" id="pp-nav-back">← Back to portfolio</a>
   <div class="nav-logo" id="pp-nav-logo">Willa Wei</div>
-  <button id="pp-lang-toggle" onclick="togglePPLang()" style="background:var(--warm-white);border:1.5px solid var(--sand);color:var(--ink-mid);font-size:0.8rem;padding:0.35rem 0.9rem;border-radius:100px;cursor:pointer;font-family:var(--sans);transition:all 0.2s">&#20013;&#25991;</button>
+  <button id="pp-lang-toggle" onclick="togglePPLang()" style="background:var(--warm-white);border:1.5px solid var(--sand);color:var(--ink-mid);font-size:0.8rem;padding:0.35rem 0.9rem;border-radius:100px;cursor:pointer;font-family:var(--sans);transition:all 0.2s">中文模式</button>
 </nav>
 
 <!-- HERO -->
