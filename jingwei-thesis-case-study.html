@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>The Art of Jingwei — BFA Thesis Case Study · Willa Wei</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --cream:#FAF7F2;--warm-white:#F5EFE4;--sand:#E8DECE;
+  --jw:#3E6B8C;--jw-light:#C2D6E2;--jw-dark:#274A63;
+  --ink:#2C2018;--ink-mid:#5C4F3A;--ink-light:#9C8B72;
+  --serif:'DM Serif Display',Georgia,serif;
+  --sans:'DM Sans',system-ui,sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--cream);color:var(--ink);font-size:16px;line-height:1.7;overflow-x:hidden}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(250,247,242,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--sand);display:flex;align-items:center;justify-content:space-between;padding:1rem 2.5rem}
+.nav-back{font-size:0.875rem;color:var(--ink-mid);text-decoration:none;display:flex;align-items:center;gap:0.4rem;transition:color 0.2s}
+.nav-back:hover{color:var(--jw)}
+.nav-logo{font-family:var(--serif);font-size:1.1rem;color:var(--ink)}
+
+.case-hero{padding:8rem 2.5rem 5rem;max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.hero-tag{display:inline-block;background:var(--jw-light);color:var(--jw-dark);font-size:0.75rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;padding:0.3rem 0.85rem;border-radius:100px;margin-bottom:1.25rem}
+.hero-title{font-family:var(--serif);font-size:clamp(2rem,3.5vw,3.2rem);line-height:1.15;margin-bottom:1rem}
+.hero-title em{font-style:italic;color:var(--jw)}
+.hero-sub{font-size:0.95rem;color:var(--ink-mid);line-height:1.85;margin-bottom:2rem}
+.meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.meta-label{font-size:0.72rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-light);margin-bottom:0.3rem}
+.meta-value{font-size:0.875rem;color:var(--ink-mid)}
+.hero-cover{background:var(--jw-light);border-radius:20px;height:360px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;border:1px solid var(--sand)}
+.hero-cover img{width:100%;height:100%;object-fit:cover}
+
+.content{max-width:780px;margin:0 auto;padding:0 2.5rem}
+.divider{border:none;border-top:1px solid var(--sand);margin:4rem 0}
+.section-label{font-size:1rem;font-weight:600;letter-spacing:0.04em;text-transform:uppercase;color:var(--jw);margin-bottom:0.75rem}
+.section-title{font-family:var(--serif);font-size:clamp(1.6rem,2.5vw,2.2rem);line-height:1.2;margin-bottom:1.25rem}
+.body-text{color:var(--ink-mid);line-height:1.9;margin-bottom:1rem;font-size:0.95rem}
+
+.pullquote{border-left:3px solid var(--jw);padding:1rem 1.5rem;margin:2rem 0;background:var(--warm-white);border-radius:0 10px 10px 0}
+.pullquote p{font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--ink);line-height:1.6}
+.pullquote cite{font-size:0.78rem;color:var(--ink-light);margin-top:0.5rem;display:block}
+
+/* Pieces gallery */
+.pieces-sublabel{font-size:0.72rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-light);margin:2.5rem 0 1rem}
+.pieces-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+.piece-slot{border-radius:14px;overflow:hidden;border:1px solid var(--sand);background:var(--warm-white)}
+.piece-img{background:var(--warm-white)}
+.piece-img img{width:100%;height:auto;object-fit:contain;display:block;cursor:zoom-in}
+.piece-label{padding:0.85rem 1rem;font-size:0.8rem;color:var(--ink-mid);font-weight:500;border-top:1px solid var(--sand)}
+
+/* Lightbox */
+#jw-lightbox{display:none;position:fixed;inset:0;z-index:200;background:rgba(44,32,24,0.92);align-items:center;justify-content:center;cursor:zoom-out}
+#jw-lightbox.open{display:flex}
+#jw-lightbox img{max-width:90vw;max-height:90vh;object-fit:contain;border-radius:12px;cursor:default}
+#jw-lightbox-close{position:fixed;top:1.25rem;right:1.5rem;background:none;border:none;color:#FAF7F2;font-size:2rem;line-height:1;cursor:pointer;opacity:0.75;font-family:var(--sans);padding:0.25rem 0.5rem}
+#jw-lightbox-close:hover{opacity:1}
+
+.case-cta{background:var(--ink);border-radius:20px;padding:3rem;text-align:center;margin:4rem 0}
+.case-cta h3{font-family:var(--serif);font-size:1.6rem;color:var(--cream);margin-bottom:0.75rem}
+.case-cta p{font-size:0.9rem;color:#9C8B72;margin-bottom:1.75rem}
+.cta-btn{display:inline-flex;align-items:center;gap:0.5rem;background:var(--jw);color:white;text-decoration:none;font-size:0.875rem;font-weight:500;padding:0.85rem 2rem;border-radius:100px;transition:opacity 0.2s}
+.cta-btn:hover{opacity:0.85}
+.cta-secondary{display:inline-flex;align-items:center;gap:0.5rem;color:var(--sand);text-decoration:none;font-size:0.85rem;margin-left:1.5rem;border-bottom:1px solid #3C3022;padding-bottom:2px}
+.cta-secondary:hover{color:var(--jw-light)}
+
+footer{border-top:1px solid var(--sand);padding:2rem 2.5rem;display:flex;justify-content:space-between;align-items:center;max-width:1000px;margin:0 auto;font-size:0.78rem;color:var(--ink-light)}
+footer a{color:var(--ink-light);text-decoration:none}
+footer a:hover{color:var(--jw)}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.case-hero>*{animation:fadeUp 0.6s ease both}
+.case-hero>*:nth-child(2){animation-delay:0.15s}
+
+@media(max-width:768px){
+  nav{padding:1rem 1.25rem}
+  .case-hero{grid-template-columns:1fr;gap:2rem;padding:6rem 1.25rem 3rem}
+  .content{padding:0 1.25rem}
+  .meta-grid{grid-template-columns:1fr}
+  .pieces-grid-2{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-back" id="jw-nav-back">← Back to portfolio</a>
+  <div class="nav-logo" id="jw-nav-logo">Willa Wei</div>
+  <button id="jw-lang-toggle" onclick="toggleJWLang()" style="background:var(--warm-white);border:1.5px solid var(--sand);color:var(--ink-mid);font-size:0.8rem;padding:0.35rem 0.9rem;border-radius:100px;cursor:pointer;font-family:var(--sans);transition:all 0.2s">中文模式</button>
+</nav>
+
+<!-- HERO -->
+<div class="case-hero">
+  <div>
+    <div class="hero-tag" id="jw-hero-tag">Illustration · Visual Development · BFA Thesis</div>
+    <h1 class="hero-title" id="jw-hero-title">The Art of <em>Jingwei</em></h1>
+    <p class="hero-sub" id="jw-hero-sub">My undergraduate thesis at Ringling College of Art and Design — an original fantasy story and visual development artbook reimagining the Chinese myth of Jingwei. Across characters, creatures, environments, and architecture, I built an entire world to retell a forgotten girl's story on my own terms.</p>
+    <div class="meta-grid">
+      <div class="meta-item"><div class="meta-label" id="jw-ml1">Role</div><div class="meta-value" id="jw-mv1">Story, Character Design &amp; Illustration</div></div>
+      <div class="meta-item"><div class="meta-label" id="jw-ml2">Type</div><div class="meta-value" id="jw-mv2">BFA Thesis · Visual Development</div></div>
+      <div class="meta-item"><div class="meta-label" id="jw-ml3">Year</div><div class="meta-value" id="jw-mv3">2022</div></div>
+      <div class="meta-item"><div class="meta-label" id="jw-ml4">School</div><div class="meta-value" id="jw-mv4">Ringling College of Art and Design</div></div>
+    </div>
+  </div>
+  <div class="hero-cover">
+    <img src="images/jingwei-hero.png" alt="The Art of Jingwei — BFA thesis artbook cover" />
+  </div>
+</div>
+
+<div class="content">
+
+  <!-- OVERVIEW -->
+  <div class="section-label" id="jw-sl1">The project</div>
+  <h2 class="section-title" id="jw-st1">An entire world, built to tell one story</h2>
+  <p class="body-text" id="jw-bt1">The Art of Jingwei is a self-authored fantasy artbook — story, characters, and every illustration created solo over my final year. It takes the ancient Chinese legend of Jingwei, the girl who drowned in the sea and became a bird, and expands it into a full original narrative with its own cast, mythology, environments, and architecture.</p>
+  <p class="body-text" id="jw-bt2">As a thesis it was equal parts storytelling and design: writing the world, then designing everything that lived in it. The result is a 25-page artbook spanning narrative spreads, character sheets, creature design, and cinematic environment paintings.</p>
+
+  <hr class="divider"/>
+
+  <!-- STORY -->
+  <div class="section-label" id="jw-sl2">The story</div>
+  <h2 class="section-title" id="jw-st2">Retelling a forgotten girl's story</h2>
+  <p class="body-text" id="jw-bt3">In the original myth, Jingwei is little more than a cautionary symbol — a mischievous girl who paid with her life. I wanted to tell the story that's missing from that record. My version follows a girl who rows out alone into a long winter sea to find her lost sister, is swallowed by the waves, and is saved by an amulet — at the cost of slowly turning into a bird forever.</p>
+
+  <div class="pullquote">
+    <p id="jw-pq1">"I wanted to revisit the women of Chinese mythology — not as the obedient figures they are often remembered as, but as complex, imperfect people with desires, fears, and stories of their own."</p>
+    <cite id="jw-pq1-cite">— Artist statement</cite>
+  </div>
+
+  <p class="body-text" id="jw-bt4">The companions I designed for her are flawed too — not flawless heroes, but imperfect people trying, in their own broken ways, to save the world. That tension is the heart of the book.</p>
+
+  <hr class="divider"/>
+
+  <!-- CHARACTER DESIGN -->
+  <div class="section-label" id="jw-sl3">Character design</div>
+  <h2 class="section-title" id="jw-st3">A cast of gods, mortals, and monsters</h2>
+  <p class="body-text" id="jw-bt5">Each character was designed from the inside out — personality and role first, then costume, silhouette, and color. The cast blends Chinese mythological figures with original creatures, unified by a hanfu-inspired, ink-and-watercolor visual language.</p>
+
+  <div class="pieces-grid-2">
+    <div class="piece-slot">
+      <div class="piece-img">
+        <img src="images/jingwei-char-nvwa.jpg" alt="Nvwa — the girl who becomes Jingwei" />
+      </div>
+      <div class="piece-label" id="jw-c1">Nvwa — the girl who becomes Jingwei</div>
+    </div>
+    <div class="piece-slot">
+      <div class="piece-img">
+        <img src="images/jingwei-char-jingwei.jpg" alt="Jingwei — the bird-spirit she becomes" />
+      </div>
+      <div class="piece-label" id="jw-c2">Jingwei — the bird-spirit she becomes</div>
+    </div>
+    <div class="piece-slot">
+      <div class="piece-img">
+        <img src="images/jingwei-char-yaoji.jpg" alt="Yaoji (Wu) — her sister, who becomes a mountain" />
+      </div>
+      <div class="piece-label" id="jw-c3">Yaoji (Wu) — her sister, who becomes a mountain</div>
+    </div>
+    <div class="piece-slot">
+      <div class="piece-img">
+        <img src="images/jingwei-char-yan.jpg" alt="Yan — tribe leader, her father" />
+      </div>
+      <div class="piece-label" id="jw-c4">Yan — tribe leader, her father</div>
+    </div>
+    <div class="piece-slot">
+      <div class="piece-img">
+        <img src="images/jingwei-char-nian.jpg" alt="Nian — ice monster of the forest" />
+      </div>
+      <div class="piece-label" id="jw-c5">Nian — ice monster of the forest</div>
+    </div>
+    <div class="piece-slot">
+      <div class="piece-img">
+        <img src="images/jingwei-char-seagod.jpg" alt="Sea God — the abandoned god" />
+      </div>
+      <div class="piece-label" id="jw-c6">Sea God — the abandoned god</div>
+    </div>
+  </div>
+
+  <hr class="divider"/>
+
+  <!-- WORLD & ENVIRONMENTS -->
+  <div class="section-label" id="jw-sl4">World &amp; environments</div>
+  <h2 class="section-title" id="jw-st4">From snowbound villages to the sea god's temple</h2>
+  <p class="body-text" id="jw-bt6">Beyond the cast, I designed the world they live in — the tribe's ritual architecture, the snow-locked coastal village, the frozen forest, and the luminous underwater temple of the abandoned sea god. These cinematic environments set the mood and ground the story's mythology in a place that feels real.</p>
+
+  <div class="piece-slot" style="margin-bottom:1.25rem">
+    <div class="piece-img">
+      <img src="images/jingwei-env-sisters.jpg" alt="Jingwei &amp; Yaoji" />
+    </div>
+    <div class="piece-label" id="jw-e0">Jingwei &amp; Yaoji</div>
+  </div>
+
+  <div class="piece-slot" style="margin-bottom:1.25rem">
+    <div class="piece-img">
+      <img src="images/jingwei-env-village.jpg" alt="The coastal village" />
+    </div>
+    <div class="piece-label" id="jw-e2">The coastal village</div>
+  </div>
+
+  <div class="piece-slot" style="margin-bottom:1.25rem">
+    <div class="piece-img">
+      <img src="images/jingwei-env-forest.jpg" alt="Nian in the frozen forest" />
+    </div>
+    <div class="piece-label" id="jw-e3">Nian in the frozen forest</div>
+  </div>
+
+  <div class="piece-slot" style="margin-bottom:1.25rem">
+    <div class="piece-img">
+      <img src="images/jingwei-env-temple.jpg" alt="The sea god's temple" />
+    </div>
+    <div class="piece-label" id="jw-e4">The sea god's temple</div>
+  </div>
+
+  <div class="case-cta">
+    <h3 id="jw-cta-title">Want to build a world together?</h3>
+    <p id="jw-cta-sub">The Art of Jingwei is one of the most complete expression of my illustration, storytelling, and worldbuilding practice to date. If you're imagining a story, a cast of characters, or a world waiting to be explored, I'd love to hear about it.</p>
+    <a href="mailto:willawei624@gmail.com" class="cta-btn" id="jw-cta-btn">Get in touch ↗</a>
+    <a href="index.html" class="cta-secondary" id="jw-cta-back">← Back to portfolio</a>
+  </div>
+
+</div>
+
+<div id="jw-lightbox" role="dialog" aria-modal="true" aria-label="Image zoom">
+  <button id="jw-lightbox-close" aria-label="Close">&times;</button>
+  <img id="jw-lightbox-img" src="" alt="" />
+</div>
+
+<footer>
+  <span id="jw-footer-copy">© 2025 Willa Wei · UX &amp; Visual Designer</span>
+  <span><a href="#top" id="jw-footer-top">Back to top ↑</a></span>
+</footer>
+
+<script>
+const jwT = {
+  'jw-nav-back':    ['← Back to portfolio', '← 返回作品集'],
+  'jw-nav-logo':    ['Willa Wei', '薇拉·魏'],
+  'jw-hero-tag':    ['Illustration · Visual Development · BFA Thesis', '插画 · 视觉设定 · 本科毕设'],
+  'jw-hero-title':  ['The Art of <em>Jingwei</em>', '精卫 · <em>The Art of Jingwei</em>'],
+  'jw-hero-sub':    ['My undergraduate thesis at Ringling College of Art and Design — an original fantasy story and visual development artbook reimagining the Chinese myth of Jingwei. Across characters, creatures, environments, and architecture, I built an entire world to retell a forgotten girl\'s story on my own terms.', '这是我在瑞林艺术与设计学院（Ringling College of Art and Design）完成的本科毕业设计——一部以中国神话"精卫填海"为灵感的原创奇幻故事与视觉设定集。从角色、生物、环境到建筑设计，我围绕精卫填海的传说构建了一个完整的幻想世界，并尝试从全新的视角让那个曾被神话定义的女孩，拥有属于自己的声音与故事。'],
+  'jw-ml1':         ['Role', '角色'],
+  'jw-mv1':         ['Story, Character Design &amp; Illustration', '故事、角色设计与插画'],
+  'jw-ml2':         ['Type', '类型'],
+  'jw-mv2':         ['BFA Thesis · Visual Development', '本科毕设 · 视觉设定'],
+  'jw-ml3':         ['Year', '年份'],
+  'jw-mv3':         ['2022', '2022'],
+  'jw-ml4':         ['School', '院校'],
+  'jw-mv4':         ['Ringling College of Art and Design', '瑞林艺术学院'],
+  'jw-sl1':         ['The project', '项目概述'],
+  'jw-st1':         ['An entire world, built to tell one story', '从一个传说，到一个世界'],
+  'jw-bt1':         ['The Art of Jingwei is a self-authored fantasy artbook — story, characters, and every illustration created solo over my final year. It takes the ancient Chinese legend of Jingwei, the girl who drowned in the sea and became a bird, and expands it into a full original narrative with its own cast, mythology, environments, and architecture.', '《The Art of Jingwei》是我在毕业期间独立创作的原创奇幻设定集。从故事、角色到每一张插画，整个项目均由我一人完成。我以"精卫填海"的古老传说为起点，重新想象那个被神话记住、却鲜少被真正讲述的女孩。围绕她的旅程，我构建了完整的人物关系、神话体系、环境与建筑，让一个古老故事成长为一个属于自己的幻想世界。'],
+  'jw-bt2':         ['As a thesis it was equal parts storytelling and design: writing the world, then designing everything that lived in it. The result is a 25-page artbook spanning narrative spreads, character sheets, creature design, and cinematic environment paintings.', '作为毕业设计，它既是一部原创故事，也是一场完整的视觉开发实践。我从世界观与叙事出发，逐步构建角色、生物、环境与建筑，并最终完成一本 25 页的设定集，呈现这个幻想世界的样貌与故事。'],
+  'jw-sl2':         ['The story', '故事与立意'],
+  'jw-st2':         ['Retelling a forgotten girl\'s story', '为那个被遗忘的女孩重新讲一个故事'],
+  'jw-bt3':         ['In the original myth, Jingwei is little more than a cautionary symbol — a mischievous girl who paid with her life. I wanted to tell the story that\'s missing from that record. My version follows a girl who rows out alone into a long winter sea to find her lost sister, is swallowed by the waves, and is saved by an amulet — at the cost of slowly turning into a bird forever.', '在原始神话中，精卫更像一个被赋予寓意的符号——那个因顽皮而葬身大海的女孩。可我始终好奇，在成为神话之前，她究竟是谁？我尝试为那段缺失的空白写下自己的答案。在我的版本里，她为了寻找失踪的姐姐独自出海，在寒冬与风暴中被海浪吞没，并因一枚护符而获得新生。然而这份救赎并非没有代价——从那一刻起，她开始一点点变成一只鸟。'],
+  'jw-pq1':         ['"I wanted to revisit the women of Chinese mythology — not as the obedient figures they are often remembered as, but as complex, imperfect people with desires, fears, and stories of their own."', '"我想讲述中国神话中的女性故事——不是她们被神话记住的样子，而是她们本可以成为的样子：真实、复杂、充满缺陷，也因此更加鲜活。"'],
+  'jw-pq1-cite':    ['— Artist statement', '— 创作自述'],
+  'jw-bt4':         ['The companions I designed for her are flawed too — not flawless heroes, but imperfect people trying, in their own broken ways, to save the world. That tension is the heart of the book.', '我为她创造的同伴们同样如此。他们并非完美无缺的英雄，而是在伤痕、遗憾与挣扎中努力做出正确选择的人。而这种"明知不完美，却依然选择前行"的张力，正是整本书的核心。'],
+  'jw-sl3':         ['Character design', '角色设计'],
+  'jw-st3':         ['A cast of gods, mortals, and monsters', '神明、凡人与异兽'],
+  'jw-bt5':         ['Each character was designed from the inside out — personality and role first, then costume, silhouette, and color. The cast blends Chinese mythological figures with original creatures, unified by a hanfu-inspired, ink-and-watercolor visual language.', '我始终相信，角色设计首先服务于故事。因此，每位角色都先拥有自己的性格、动机与叙事功能，再逐步发展出对应的服饰、造型与色彩。虽然阵容横跨神明、凡人与异兽，但统一的中华服饰元素、水墨质感与水彩风格让他们共同属于同一个世界。'],
+  'jw-c1':          ['Nvwa — the girl who becomes Jingwei', '女娃 — 化身精卫的女孩'],
+  'jw-c2':          ['Jingwei — the bird-spirit she becomes', '精卫 — 她所化身的鸟之灵'],
+  'jw-c3':          ['Yaoji (Wu) — her sister, who becomes a mountain', '瑶姬— 化身为巫山的姐姐'],
+  'jw-c4':          ['Yan — tribe leader, her father', '炎 — 部落首领，她的父亲'],
+  'jw-c5':          ['Nian — ice monster of the forest', '年 — 森林中掌控冰雪的异兽'],
+  'jw-c6':          ['Sea God — the abandoned god', '海神 — 被遗弃的古老海神'],
+  'jw-sl4':         ['World &amp; environments', '世界观'],
+  'jw-st4':         ['From snowbound villages to the sea god\'s temple', '人类的村落与被遗忘的海神神庙'],
+  'jw-bt6':         ['Beyond the cast, I designed the world they live in — the tribe\'s ritual architecture, the snow-locked coastal village, the frozen forest, and the luminous underwater temple of the abandoned sea god. These cinematic environments set the mood and ground the story\'s mythology in a place that feels real.', '对我而言，世界观不仅存在于角色身上，也存在于他们生活的地方。因此，我设计了部落的祭祀建筑、冰雪覆盖的海岸聚落、寒冬森林，以及被遗忘海神的水下神殿。它们不仅是故事发生的背景，更记录着这个世界的历史、信仰与传说。'],
+  'jw-e0':          ['Jingwei &amp; Yaoji', '精卫与瑶姬'],
+
+  'jw-e2':          ['The coastal village', '海边村落'],
+  'jw-e3':          ['Nian in the frozen forest', '寒林中的年'],
+  'jw-e4':          ['The sea god\'s temple', '海神神庙'],
+  'jw-cta-title':   ['Want to build a world together?', '让故事拥有属于它的世界'],
+  'jw-cta-sub':     ['The Art of Jingwei is one of the most complete expression of my illustration, storytelling, and worldbuilding practice to date. If you\'re imagining a story, a cast of characters, or a world waiting to be explored, I\'d love to hear about it.', '《The Art of Jingwei》是我在插画创作与世界观构建上的一次完整实践。从角色、环境到故事与神话体系，整个项目都围绕同一个幻想世界展开。如果你也在构思角色、故事或世界观，欢迎与我交流。'],
+  'jw-cta-btn':     ['Get in touch ↗', '联系我 ↗'],
+  'jw-cta-back':    ['← Back to portfolio', '← 返回作品集'],
+  'jw-footer-copy': ['© 2025 Willa Wei · UX &amp; Visual Designer', '© 2025 薇拉·魏（魏卓萱）· UX 设计师 / 视觉设计师'],
+  'jw-footer-top':  ['Back to top ↑', '返回顶部 ↑'],
+};
+
+(function() {
+  const overlay  = document.getElementById('jw-lightbox');
+  const lightImg = document.getElementById('jw-lightbox-img');
+  const closeBtn = document.getElementById('jw-lightbox-close');
+
+  function openLightbox(src, alt) {
+    lightImg.src = src;
+    lightImg.alt = alt;
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('.piece-img img').forEach(function(img) {
+    img.addEventListener('click', function() { openLightbox(img.src, img.alt); });
+  });
+  overlay.addEventListener('click', function(e) { if (e.target === overlay) closeLightbox(); });
+  closeBtn.addEventListener('click', closeLightbox);
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && overlay.classList.contains('open')) closeLightbox();
+  });
+})();
+
+let jwLang = 'en';
+function toggleJWLang() {
+  jwLang = jwLang === 'en' ? 'zh' : 'en';
+  const i = jwLang === 'en' ? 0 : 1;
+  document.getElementById('jw-lang-toggle').textContent = jwLang === 'en' ? '中文模式' : 'English Mode';
+  for (const id in jwT) {
+    const el = document.getElementById(id);
+    if (el) el.innerHTML = jwT[id][i];
+  }
+}
+</script>
+</body>
+</html>

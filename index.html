@@ -65,10 +65,10 @@ section{padding:5rem 2.5rem;max-width:1100px;margin:0 auto}
 .hero-badge{position:absolute;top:8px;right:-8px;background:var(--terracotta-light);border-radius:12px;padding:0.45rem 0.75rem;font-size:0.68rem;color:var(--terracotta-dark);font-weight:500;text-align:center;line-height:1.4;box-shadow:0 2px 8px rgba(44,32,24,0.08)}
 
 /* ABOUT */
-.about-top{display:grid;grid-template-columns:1fr 420px;gap:4rem;align-items:stretch;margin-bottom:1.5rem}
+.about-top{display:grid;grid-template-columns:1fr 420px;gap:4rem;align-items:start;margin-bottom:1.5rem}
 .about-left{display:flex;flex-direction:column}
 .about-highlight{background:var(--warm-white);border-left:3px solid var(--terracotta);padding:1rem 1.25rem;border-radius:0 8px 8px 0;margin:1.5rem 0;font-size:0.9rem;color:var(--ink-mid);font-style:italic;line-height:1.7}
-.about-avatar{display:flex;align-items:stretch;justify-content:center}
+.about-avatar{display:flex;align-items:flex-start;justify-content:center;margin-top:6rem}
 .about-avatar img{width:100%;height:100%;object-fit:contain;object-position:bottom center;display:block}
 .about-bottom{display:flex;flex-direction:column;gap:1rem}
 .edu-block{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
@@ -103,6 +103,7 @@ section{padding:5rem 2.5rem;max-width:1100px;margin:0 auto}
 .tag-pet{background:var(--terracotta-light);color:var(--terracotta-dark)}
 .tag-uw{background:#D4E8F0;color:#1A5C7A}
 .tag-illus{background:var(--sage-light);color:#3B5E3B}
+.tag-client{background:var(--warm-white);color:var(--ink-mid);border:1px solid var(--sand)}
 .project-name{font-family:var(--serif);font-size:1.3rem;margin-bottom:0.6rem}
 .project-desc{font-size:0.875rem;color:var(--ink-mid);line-height:1.7}
 .project-result{font-size:0.8rem;color:var(--sage);font-weight:500;margin-top:0.8rem}
@@ -159,7 +160,25 @@ footer a:hover{color:var(--terracotta)}
   .project-card.featured{grid-column:span 1;grid-template-columns:1fr}
   .project-card.featured .project-img{height:220px}
   .skills-grid{grid-template-columns:1fr 1fr;gap:2rem}.skills-dark{padding:2.5rem 1.5rem}
+  .vd-grid{grid-template-columns:1fr}
 }
+
+/* WORK TABS */
+.work-tabs{display:flex;gap:0;border-bottom:2px solid var(--sand);margin-bottom:3rem}
+.work-tab{font-family:var(--serif);font-size:1.15rem;color:var(--ink-light);background:none;border:none;border-bottom:2px solid transparent;margin-bottom:-2px;padding:0.75rem 2.75rem 0.75rem 0;cursor:pointer;transition:color 0.2s,border-color 0.2s}
+.work-tab+.work-tab{padding-left:2.75rem}
+.work-tab.active{color:var(--ink);border-bottom-color:var(--terracotta)}
+.work-tab:not(.active):hover{color:var(--ink-mid)}
+.work-panel{display:none}.work-panel.active{display:block}
+/* Visual Design grid */
+.vd-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.vd-card{background:var(--warm-white);border:1px solid var(--sand);border-radius:16px;overflow:hidden;transition:transform 0.25s,border-color 0.25s}
+.vd-card:hover{transform:translateY(-4px);border-color:var(--terracotta-light)}
+.vd-card-img{height:220px;display:flex;align-items:center;justify-content:center;font-size:3.5rem}
+.vd-card-img img{width:100%;height:100%;object-fit:cover;display:block}
+.vd-card-body{padding:1.5rem}
+.vd-card-title{font-family:var(--serif);font-size:1.15rem;margin-bottom:0.5rem}
+.vd-card-desc{font-size:0.875rem;color:var(--ink-mid);line-height:1.7}
 </style>
 </head>
 <body>
@@ -182,12 +201,12 @@ footer a:hover{color:var(--terracotta)}
 <div class="full-bg">
 <div class="hero-section" id="home">
   <div class="hero-text">
-    <div id="hero-tag" class="hero-tag">UX Designer · Illustration-rooted</div>
+    <div id="hero-tag" class="hero-tag">UX Designer · Visual Designer</div>
     <h1 id="hero-title" class="hero-title" id="hero-title">
       Designing experiences<br/>that feel <em>alive</em>
     </h1>
     <p id="hero-sub" class="hero-sub">
-      Hi, I'm Willa — an illustrator-turned UX designer, currently pursuing my <strong>MS in HCDE at the University of Washington</strong>. I build warm, human-centered products — especially for <strong>pet, internet, consumer, and lifestyle brands</strong> where storytelling matters.
+      Hi, I'm Willa — an illustrator-turned-UX designer currently pursuing my <strong>MS in HCDE</strong> at the University of Washington. I build warm, human-centered products and craft visual identities — for pet, consumer, and lifestyle brands where storytelling matters.
     </p>
     <div class="hero-buttons">
       <a href="#projects" id="hero-btn1" class="btn-primary">View my work ↓</a>
@@ -235,7 +254,7 @@ footer a:hover{color:var(--terracotta)}
         My illustration background means I don't just wireframe — I think about visual rhythm, character, and the feeling a product leaves behind. Most UX designers can't do that.
       </div>
       <p class="body-text" id="about-p2">
-        I'm now deepening that foundation with a <strong>Master's in Human Centered Design &amp; Engineering at UW</strong>, where I've worked on everything from campus wellness systems to AI edtech usability research for real North American startups.
+        I'm currently pursuing my Master's in Human Centered Design &amp; Engineering (HCDE) at the University of Washington, where I bring together my background in illustration and visual storytelling with user research, interaction design, and systems thinking. Along the way, I've worked on projects ranging from campus wellness systems to AI edtech usability research, exploring how design can create experiences that are both functional and deeply human.
       </p>
     </div>
     <div class="about-avatar">
@@ -275,8 +294,13 @@ footer a:hover{color:var(--terracotta)}
 -->
 <section id="projects">
   <div class="projects-header">
-    <h2 id="projects-title" class="section-title" style="margin:0">Selected work</h2>
+    <h2 id="projects-title" class="section-title" style="margin:0">Selected Work</h2>
   </div>
+  <div class="work-tabs" role="tablist">
+    <button class="work-tab active" role="tab" id="tab-ux" onclick="switchWorkTab('ux')">UX Design Projects</button>
+    <button class="work-tab" role="tab" id="tab-vd" onclick="switchWorkTab('vd')">Visual Design Projects</button>
+  </div>
+  <div id="work-panel-ux" class="work-panel active">
   <div class="projects-grid">
 
     <!-- FEATURED: PawPal — pet industry, concept project -->
@@ -286,10 +310,10 @@ footer a:hover{color:var(--terracotta)}
       </div>
       <div class="project-body">
         <div class="project-tags">
-          <span class="project-tag tag-pet">Pet Care</span>
-          <span class="project-tag">App Design</span>
-          <span class="project-tag">Concept Project</span>
-          <span class="project-tag">End-to-end UX</span>
+          <span class="project-tag tag-pet" id="tag-pet-care-1">Pet Care</span>
+          <span class="project-tag" id="tag-app-design-1">App Design</span>
+          <span class="project-tag" id="tag-concept-1">Concept Project</span>
+          <span class="project-tag" id="tag-e2e-ux-1">End-to-end UX</span>
         </div>
         <div class="project-name" id="pawpal-name">PawPal — Pet Separation Anxiety App</div>
         <p class="project-desc" id="pawpal-desc">A self-initiated UX concept addressing the emotional gap between pet owners and their pets. Full process: 50-person survey, 3 interviews, persona, journey map, IA, lo-fi, hi-fi, design system, usability testing.</p>
@@ -304,9 +328,9 @@ footer a:hover{color:var(--terracotta)}
       </div>
       <div class="project-body">
         <div class="project-tags">
-          <span class="project-tag tag-uw">UW HCDE</span>
-          <span class="project-tag">Space + Digital Design</span>
-          <span class="project-tag">Team Project</span>
+          <span class="project-tag tag-uw" id="tag-uw-hcde-1">UW HCDE</span>
+          <span class="project-tag" id="tag-space-digital-1">Space + Digital Design</span>
+          <span class="project-tag" id="tag-team-1">Team Project</span>
         </div>
         <div class="project-name" id="tru-name">TRU Wellness — Campus Micro-Recovery Pods</div>
         <p class="project-desc" id="tru-desc">Designed "Harmony" biophilic wellness pods for UW students, combining physical pod design with a full digital booking app and kiosk interface. 28-page design specification delivered.</p>
@@ -321,9 +345,10 @@ footer a:hover{color:var(--terracotta)}
       </div>
       <div class="project-body">
         <div class="project-tags">
-          <span class="project-tag tag-uw">UW HCDE</span>
-          <span class="project-tag">Usability Research</span>
-          <span class="project-tag">Ed-Tech</span>
+          <span class="project-tag tag-uw" id="tag-uw-hcde-2">UW HCDE</span>
+          <span class="project-tag" id="tag-usability-1">Usability Research</span>
+          <span class="project-tag" id="tag-edtech-1">Ed-Tech</span>
+          <span class="project-tag tag-client" id="colleague-client">Client Work</span>
         </div>
         <div class="project-name" id="colleague-name">Colleague AI — Usability Evaluation</div>
         <p class="project-desc" id="colleague-desc">Conducted in-depth usability testing for a North American ed-tech startup. Identified 10+ critical interaction issues across 3 features using severity rankings, delivered a 40-page professional research report.</p>
@@ -332,6 +357,64 @@ footer a:hover{color:var(--terracotta)}
     </a>
 
   </div>
+  </div><!-- /#work-panel-ux -->
+
+  <div id="work-panel-vd" class="work-panel">
+    <div class="vd-grid">
+
+      <a href="poster-series-case-study.html" class="vd-card" style="text-decoration:none;color:inherit;display:block">
+        <div class="vd-card-img" style="background:#EDE8DC"><img src="images/Poster series.jpg" alt="Poster, invitation, and program series — a cohesive suite of print materials with custom illustration and typography"/></div>
+        <div class="vd-card-body">
+          <div class="project-tags">
+            <span class="project-tag tag-illus" id="tag-illus-1">Illustration</span>
+            <span class="project-tag" id="tag-print-1">Print Design</span>
+            <span class="project-tag tag-client" id="vd-poster-client">Client Work</span>
+          </div>
+          <div class="vd-card-title" id="vd-poster-title">Poster, Invitation & Program Series</div>
+          <p class="vd-card-desc" id="vd-poster-desc">A cohesive suite of print materials — posters, event invitations, and programs — unified by a custom illustration and typographic system.</p>
+        </div>
+      </a>
+
+      <a href="murder-mystery-case-study.html" class="vd-card" style="text-decoration:none;color:inherit;display:block">
+        <div class="vd-card-img" style="background:#F0EBE3"><img src="images/Murder mystery.jpg" alt="Murder mystery character cards and covers — original character illustrations establishing distinct personalities through costume, expression, and color"/></div>
+        <div class="vd-card-body">
+          <div class="project-tags">
+            <span class="project-tag tag-illus" id="tag-illus-2">Illustration</span>
+            <span class="project-tag" id="tag-char-1">Character Design</span>
+            <span class="project-tag tag-client" id="vd-murder-client">Client Work</span>
+          </div>
+          <div class="vd-card-title" id="vd-murder-title">Murder Mystery Character Cards & Covers</div>
+          <p class="vd-card-desc" id="vd-murder-desc">Original character illustrations and cover art for a murder mystery game — each card establishing distinct personality through costume, expression, and color.</p>
+        </div>
+      </a>
+
+      <a href="coral-poster-case-study.html" class="vd-card" style="text-decoration:none;color:inherit;display:block">
+        <div class="vd-card-img" style="background:#F5E8E0"><img src="images/Coral poster.jpg" alt="Sarasota Aquarium coral poster series — three posters on coral reef ecosystems and marine conservation"/></div>
+        <div class="vd-card-body">
+          <div class="project-tags">
+            <span class="project-tag tag-illus" id="tag-illus-3">Illustration</span>
+            <span class="project-tag" id="tag-poster-series-1">Poster Series</span>
+          </div>
+          <div class="vd-card-title" id="vd-coral-title">Sarasota Aquarium Coral Poster Series</div>
+          <p class="vd-card-desc" id="vd-coral-desc">A three-poster series on coral reef ecosystems and marine conservation created for the Sarasota Aquarium, merging scientific illustration with editorial graphic design.</p>
+        </div>
+      </a>
+
+      <a href="jingwei-thesis-case-study.html" class="vd-card" style="text-decoration:none;color:inherit;display:block">
+        <div class="vd-card-img" style="background:#E8EDE0"><img src="images/Thesis.jpg" alt="Undergraduate illustration thesis — a cohesive body of work developed through research, concept development, and studio refinement"/></div>
+        <div class="vd-card-body">
+          <div class="project-tags">
+            <span class="project-tag tag-illus" id="tag-illus-4">Illustration</span>
+            <span class="project-tag" id="tag-thesis-1">Thesis</span>
+          </div>
+          <div class="vd-card-title" id="vd-thesis-title">Undergraduate Thesis</div>
+          <p class="vd-card-desc" id="vd-thesis-desc">A sustained body of illustration work developed through research, iterative concept development, and studio refinement — presented as a cohesive senior thesis exhibition.</p>
+        </div>
+      </a>
+
+    </div>
+  </div><!-- /#work-panel-vd -->
+
 </section>
 
 <hr class="divider"/>
@@ -341,7 +424,7 @@ footer a:hover{color:var(--terracotta)}
   <div class="skills-dark">
     <div id="skills-label" class="skills-label-light">Skills & tools</div>
     <h2 id="skills-title" class="skills-title-light">What I bring to a team</h2>
-    <p id="skills-sub" class="skills-sub">UX research + visual storytelling — a rare combination, especially for consumer and pet brands.</p>
+    <p id="skills-sub" class="skills-sub">Bringing together user research and visual storytelling to create experiences that are both meaningful to people and aligned with brand goals.</p>
     <div class="skills-grid">
       <div>
         <div class="skill-group-title" id="skill-group-1">UX Design</div>
@@ -376,11 +459,11 @@ footer a:hover{color:var(--terracotta)}
     </div>
     <div class="skills-edge">
       <span class="edge-label">Unique edge</span>
-      <span class="edge-pill">Ringling BFA Illustration</span>
-      <span class="edge-pill">UW HCDE MS</span>
-      <span class="edge-pill">Illustration × UX</span>
-      <span class="edge-pill">Pet & consumer brands</span>
-      <span class="edge-pill">China market insight</span>
+      <span class="edge-pill" id="edge-pill-ringling">Ringling BFA Illustration</span>
+      <span class="edge-pill" id="edge-pill-hcde-ms">UW HCDE MS</span>
+      <span class="edge-pill" id="edge-pill-illus-ux">Illustration × UX</span>
+      <span class="edge-pill" id="edge-pill-pet-brands">Pet & consumer brands</span>
+      <span class="edge-pill" id="edge-pill-china-insight">China market insight</span>
     </div>
   </div>
 </section>
@@ -396,7 +479,7 @@ footer a:hover{color:var(--terracotta)}
     <div>
       <h2 id="contact-title" class="contact-title" id="contact-title">Let's build something<br/>people <em>love</em></h2>
       <p id="contact-sub" class="contact-sub">
-        I'm looking for UX roles at international companies — especially in pet care, consumer goods, or lifestyle. If your team values design craft and emotional storytelling, I'd love to connect.
+        I'm currently seeking full-time design opportunities and am open to select freelance projects. Drawing from a background in user research, interaction design, and visual storytelling, I enjoy creating experiences that are both useful and meaningful—helping products, services, and brands connect with people in thoughtful ways.
       </p>
       <a href="mailto:willawei624@gmail.com" class="contact-email">✉ &nbsp;willawei624@gmail.com</a>
       <div class="social-row">
@@ -410,7 +493,7 @@ footer a:hover{color:var(--terracotta)}
       <div class="ccard-label" id="ccard-edu-label">Education</div>
       <div class="ccard-value" id="ccard-edu-value" style="font-size:0.9rem;font-family:var(--sans);color:var(--ink-mid)">UW HCDE MS (in progress) · Ringling BFA</div>
       <div class="ccard-label" id="ccard-open-label">Open to</div>
-      <div class="ccard-value" id="ccard-open-value" style="font-size:0.9rem;font-family:var(--sans);color:var(--ink-mid)">MNC & international brands · Pet / consumer / lifestyle</div>
+      <div class="ccard-value" id="ccard-open-value" style="font-size:0.9rem;font-family:var(--sans);color:var(--ink-mid)">UX Design · Product Design · Visual Design · Brand Experience</div>
       <div class="ccard-label" id="ccard-status-label">Status</div>
       <div><span class="avail-badge"><span class="avail-dot"></span><span id="avail-text">Open to opportunities</span></div>
     </div>
@@ -418,7 +501,7 @@ footer a:hover{color:var(--terracotta)}
 </section>
 
 <footer>
-  <span id="footer-copy">© 2025 Willa Wei (魏卓萱) · UX Designer & Illustrator</span>
+  <span id="footer-copy">© 2025 Willa Wei · UX & Visual Designer</span>
   <span><a href="#home" id="footer-top">Back to top ↑</a></span>
 </footer>
 
@@ -433,22 +516,22 @@ var t = {
   'nav-work':        ['Work', '作品'],
   'nav-skills':      ['Skills', '技能'],
   'nav-contact':     ['Contact', '联系'],
-  'hero-tag':        ['UX Designer &middot; Illustration-Rooted', '用户体验设计师 · 插画师'],
-  'hero-sub':        ['Hi, I\'m Willa &mdash; an illustrator-turned UX designer, currently pursuing my <strong>MS in HCDE at the University of Washington</strong>. I build warm, human-centered products &mdash; especially for <strong>pet, internet, consumer, and lifestyle brands</strong> where storytelling matters.', '你好，我是Willa——一位从插画师转型为用户体验设计师的人机交互设计硕士，目前<strong>正在华盛顿大学攻读人机交互设计硕士学位</strong>。我致力于打造温暖、以人为本的产品——尤其擅长为<strong>宠物、互联网、消费品和生活方式品牌</strong>打造注重故事性的产品。'],
+  'hero-tag':        ['UX Designer &middot; Visual Designer', '用户体验设计师 · 视觉设计师'],
+  'hero-sub':        ['Hi, I\'m Willa — an illustrator-turned-UX designer currently pursuing my <strong>MS in HCDE</strong> at the University of Washington. I build warm, human-centered products and craft visual identities — for pet, consumer, and lifestyle brands where storytelling matters.', '你好，我是 Willa，本科主修插画，目前在华盛顿大学攻读 <strong>HCDE 硕士学位</strong>。我的设计实践横跨用户体验与视觉设计，关注人与产品之间的情感连接，也关注品牌如何通过视觉语言传递故事与价值。'],
   'hero-btn1':       ['View my work &darr;', '查看我的作品 ↓'],
   'hero-btn2':       ['Get in touch', '联系我'],
   'about-label':     ['About me', '关于我'],
   'about-title':     ['Where visual<br/>storytelling meets UX', '视觉叙事<br/>与用户体验的交汇'],
   'about-highlight': ['My illustration background means I don\'t just wireframe &mdash; I think about visual rhythm, character, and the feeling a product leaves behind. Most UX designers can\'t do that.', '我的插画背景意味着我不只是画线框图——我会思考视觉节奏、个性特征，以及产品留给用户的感受。这是许多UX设计师容易忽视的。'],
-  'about-p1':      ['I studied illustration at Ringling College of Art &amp; Design — graduating with honors and winning the Best of Ringling award. That foundation taught me how images carry emotion and guide the eye before a single word is read.', '我在瑞林艺术与设计学院学习插画，以优异成绩毕业并荣获瑞林最佳奖。这段经历让我深刻理解图像如何在一个字都未读之前就传递情感、引导视线。'],
-  'about-p2':      ['I\'m now deepening that foundation with a <strong>Master\'s in Human Centered Design &amp; Engineering at UW</strong>, where I\'ve worked on everything from campus wellness systems to AI edtech usability research for real North American school districts.', '目前，我正在华盛顿大学<strong>人机交互设计与工程硕士</strong>项目中深化这一基础，参与了从校园健康系统到真实北美学区AI教育科技可用性研究的各类项目。'],
+  'about-p1':      ['I studied illustration at Ringling College of Art &amp; Design — graduating with honors and winning the Best of Ringling award. That foundation taught me how images carry emotion and guide the eye before a single word is read.', '我在瑞林艺术与设计学院学习插画，以优异成绩毕业并荣获瑞林最佳奖。正是这样的积累，让我懂得图像如何在文字出现之前，就开始传递情感、引导视线。'],
+  'about-p2':      ['I\'m currently pursuing my Master\'s in Human Centered Design &amp; Engineering (HCDE) at the University of Washington, where I bring together my background in illustration and visual storytelling with user research, interaction design, and systems thinking. Along the way, I\'ve worked on projects ranging from campus wellness systems to AI edtech usability research, exploring how design can create experiences that are both functional and deeply human.', '目前，我正在华盛顿大学攻读 HCDE 硕士学位，将插画与视觉设计训练所培养的叙事能力，与用户研究、交互设计和系统思维相结合。在此期间，我参与了校园健康系统设计、AI 教育科技产品可用性研究等项目，并持续探索兼具功能性与情感温度的设计体验。'],
   'stat1-label':     ['Years designing', '设计年限'],
   'stat2-label':     ['Characters delivered', '交付角色数'],
   'stat3-label':     ['Industries', '涉及行业'],
-  'projects-title':  ['Case Studies', '案例研究'],
+  'projects-title':  ['Selected Work', '精选作品'],
   'skills-label':    ['Skills &amp; tools', '技能与工具'],
   'skills-title':    ['What I bring to a team', '我能为团队带来什么'],
-    'contact-sub':     ['I\'m currently open to full-time UX roles and select freelance projects. If you\'re building something thoughtful, I\'d love to hear about it.', '我目前正在寻找全职UX职位，同时接受部分自由职业项目。如果贵公司/团队正在认真打磨有深度的产品，我真诚希望能有机会了解，并贡献出自己的力量。'],
+    'contact-sub':     ['I\'m currently seeking full-time design opportunities and am open to select freelance projects. Drawing from a background in user research, interaction design, and visual storytelling, I enjoy creating experiences that are both useful and meaningful—helping products, services, and brands connect with people in thoughtful ways.', '目前，我正在寻找全职设计岗位，同时开放部分自由职业合作机会。凭借用户研究、交互设计与视觉叙事的跨领域背景，我希望能够参与兼具商业价值与用户价值的项目，为产品体验与品牌表达贡献自己的力量。'],
   'avail-text':      ['Open to opportunities', '欢迎工作邀约'],
   'hero-badge':      ['Ringling BFA<br/>UW HCDE MS', '瑞林艺术学院 BFA<br/>华盛顿大学 HCDE 硕士'],
   'hero-btn1':       ['View my work ↓', '查看我的作品 ↓'],
@@ -457,24 +540,60 @@ var t = {
   'edu-degree-1':    ['BFA Illustration · With Honors · Best of Ringling 2022', 'BFA插画 · 荣誉毕业 · 瑞林最佳奖 2022'],
   'edu-school-2':    ['University of Washington', '华盛顿大学'],
   'edu-degree-2':    ['MS in Human Centered Design &amp; Engineering (HCDE)', '人机交互设计与工程硕士（HCDE）'],
+  'edge-pill-ringling':     ['Ringling BFA Illustration', '瑞林艺术学院 插画学士'],
+  'edge-pill-hcde-ms':      ['UW HCDE MS', '华盛顿大学 HCDE 硕士'],
+  'edge-pill-illus-ux':     ['Illustration × UX', '插画 × 用户体验'],
+  'edge-pill-pet-brands':   ['Pet & consumer brands', '宠物与消费品牌'],
+  'edge-pill-china-insight':['China market insight', '中国市场洞察'],
   'pawpal-result':   ['100% task completion · 100% found it helpful for separation anxiety', '任务完成率100% · 100%用户认为有助于缓解分离焦虑'],
   'tru-result':      ['Surveys · Interviews · Physical + Digital prototyping · Usability testing', '问卷 · 访谈 · 实体与数字原型 · 可用性测试'],
   'colleague-result':['5 teachers tested · 10+ issues classified · Actionable redesign recommendations', '5位教师测试 · 10+问题分类 · 可落地重新设计建议'],
+  'colleague-client':['Client Work', '委托项目'],
+  'vd-poster-client':['Client Work', '委托项目'],
+  'vd-murder-client':['Client Work', '委托项目'],
+  'tag-pet-care-1':      ['Pet Care', '宠物护理'],
+  'tag-app-design-1':    ['App Design', '应用设计'],
+  'tag-concept-1':       ['Concept Project', '概念项目'],
+  'tag-e2e-ux-1':        ['End-to-end UX', '全流程 UX'],
+  'tag-uw-hcde-1':       ['UW HCDE', '华大 HCDE'],
+  'tag-space-digital-1': ['Space + Digital Design', '空间 + 数字设计'],
+  'tag-team-1':          ['Team Project', '团队项目'],
+  'tag-uw-hcde-2':       ['UW HCDE', '华大 HCDE'],
+  'tag-usability-1':     ['Usability Research', '可用性研究'],
+  'tag-edtech-1':        ['Ed-Tech', '教育科技'],
+  'tag-illus-1':         ['Illustration', '插画'],
+  'tag-print-1':         ['Print Design', '平面设计'],
+  'tag-illus-2':         ['Illustration', '插画'],
+  'tag-char-1':          ['Character Design', '角色设计'],
+  'tag-illus-3':         ['Illustration', '插画'],
+  'tag-poster-series-1': ['Poster Series', '海报系列'],
+  'tag-illus-4':         ['Illustration', '插画'],
+  'tag-thesis-1':        ['Thesis', '毕业设计'],
+  'tab-ux':          ['UX Design Projects', 'UX设计项目'],
+  'tab-vd':          ['Visual Design Projects', '视觉设计项目'],
+  'vd-poster-title': ['Poster, Invitation & Program Series', '个人海报、邀请函与节目单设计'],
+  'vd-poster-desc':  ['A cohesive suite of print materials — posters, event invitations, and programs — unified by a custom illustration and typographic system.', '一套统一的印刷物料——海报、活动邀请函与节目单——以定制插画与文字系统贯穿其中。'],
+  'vd-murder-title': ['Murder Mystery Character Cards & Covers', '剧本杀角色卡与封面'],
+  'vd-murder-desc':  ['Original character illustrations and cover art for a murder mystery game — each card establishing distinct personality through costume, expression, and color.', '为剧本杀游戏创作的原创角色插画与封面——每张卡通过服饰、表情与色彩塑造鲜明的人物个性。'],
+  'vd-coral-title':  ['Sarasota Aquarium Coral Poster Series', '萨拉索塔海洋馆珊瑚海报系列'],
+  'vd-coral-desc':   ['A three-poster series on coral reef ecosystems and marine conservation created for the Sarasota Aquarium, merging scientific illustration with editorial graphic design.', '为萨拉索塔海洋馆创作的三张海报系列，以科学插画结合编辑图形设计，探索珊瑚礁生态与海洋保育主题。'],
+  'vd-thesis-title': ['Undergraduate Thesis', '本科毕设'],
+  'vd-thesis-desc':  ['A sustained body of illustration work developed through research, iterative concept development, and studio refinement — presented as a cohesive senior thesis exhibition.', '通过研究、概念发展与持续打磨完成的插画毕业创作，最终以完整的毕业展览呈现。'],
   'contact-title':   ['Let\'s build something<br/>people <em>love</em>', '一起打造<br/>人们<em>喜爱</em>的产品'],
-  'footer-copy':     ['© 2025 Willa Wei (魏卓萱) · UX Designer & Illustrator', '© 2025 薇拉·魏（魏卓萱）· UX设计师'],
+  'footer-copy':     ['© 2025 Willa Wei · UX & Visual Designer', '© 2025 薇拉·魏（魏卓萱）· UX 设计师 / 视觉设计师'],
   'footer-top':      ['Back to top ↑', '返回顶部 ↑'],
   'ccard-loc-label':  ['Location', '所在地'],
   'ccard-loc-value':  ['Seattle, WA · Changsha, China', '西雅图，华盛顿州 · 长沙，中国'],
   'ccard-edu-label':  ['Education', '学历'],
   'ccard-edu-value':  ['UW HCDE MS (in progress) · Ringling BFA', '华盛顿大学 HCDE 硕士（在读）· 瑞林 BFA'],
   'ccard-open-label': ['Open to', '求职意向'],
-  'ccard-open-value': ['MNC & international brands · Pet / consumer / lifestyle', '跨国公司与国际品牌 · 宠物 / 消费品 / 生活方式 / 互联网'],
+  'ccard-open-value': ['UX Design · Product Design · Visual Design · Brand Experience', '用户体验设计 · 产品设计 · 视觉设计 · 品牌体验设计'],
   'ccard-status-label':['Status', '状态'],
   'cv-link':          ['Download Resume ↓', '下载简历 ↓'],
   'skill-group-1':   ['UX Design', 'UX设计'],
   'skill-group-2':   ['User Research', '用户研究'],
   'skill-group-3':   ['Visual &amp; Tools', '视觉与工具'],
-  'skills-sub':      ['UX research + visual storytelling — a rare combination, especially for consumer, pet, and internet brands.', 'UX研究 + 视觉叙事——这种组合十分罕见，尤其适合消费品、宠物品牌和互联网公司。'],
+  'skills-sub':      ['Bringing together user research and visual storytelling to create experiences that are both meaningful to people and aligned with brand goals.', '结合用户研究与视觉叙事，从理解人的需求出发，打造既能回应用户体验，也能传递品牌价值的设计。'],
   'hero-title':      ['Designing experiences<br/>that feel <em>alive</em>', '设计<br/><em>充满活力的</em>体验'],
   'pawpal-name':     ['PawPal — Pet Separation Anxiety App', 'PawPal — 宠物分离焦虑应用'],
   'tru-name':        ['TRU Wellness — Campus Micro-Recovery Pods', 'TRU健康 — 校园微恢复舱'],
@@ -483,6 +602,13 @@ var t = {
   'tru-desc':        ['Designed "Harmony" biophilic wellness pods for UW students, integrating nature-inspired environments with guided mindfulness sessions and biometric feedback.', '为华盛顿大学学生设计"和谐"仿生健康舱，融合自然启发的环境、正念引导课程与生物反馈系统。'],
   'colleague-desc':  ['Conducted in-depth usability testing for a North American edtech platform serving K-12 teachers — identifying critical pain points and proposing evidence-based redesign solutions.', '为服务北美K-12教师的教育科技平台进行深度可用性测试，识别关键痛点并提出基于证据的重新设计方案。']
 };
+
+function switchWorkTab(tab) {
+  document.querySelectorAll('.work-tab').forEach(function(btn) { btn.classList.remove('active'); });
+  document.querySelectorAll('.work-panel').forEach(function(panel) { panel.classList.remove('active'); });
+  document.getElementById('tab-' + tab).classList.add('active');
+  document.getElementById('work-panel-' + tab).classList.add('active');
+}
 
 function toggleLang() {
   lang = lang === 'en' ? 'zh' : 'en';

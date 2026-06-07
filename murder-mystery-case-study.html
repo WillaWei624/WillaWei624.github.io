@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Murder Mystery Character Cards & Covers — Case Study · Willa Wei</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --cream:#FAF7F2;--warm-white:#F5EFE4;--sand:#E8DECE;
+  --mm:#2A3A6B;--mm-light:#C9D2E8;--mm-dark:#1A2547;
+  --ink:#2C2018;--ink-mid:#5C4F3A;--ink-light:#9C8B72;
+  --serif:'DM Serif Display',Georgia,serif;
+  --sans:'DM Sans',system-ui,sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--cream);color:var(--ink);font-size:16px;line-height:1.7;overflow-x:hidden}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(250,247,242,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--sand);display:flex;align-items:center;justify-content:space-between;padding:1rem 2.5rem}
+.nav-back{font-size:0.875rem;color:var(--ink-mid);text-decoration:none;display:flex;align-items:center;gap:0.4rem;transition:color 0.2s}
+.nav-back:hover{color:var(--mm)}
+.nav-logo{font-family:var(--serif);font-size:1.1rem;color:var(--ink)}
+
+.case-hero{padding:8rem 2.5rem 5rem;max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.hero-tag{display:inline-block;background:var(--mm-light);color:var(--mm-dark);font-size:0.75rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;padding:0.3rem 0.85rem;border-radius:100px;margin-bottom:1.25rem}
+.hero-title{font-family:var(--serif);font-size:clamp(2rem,3.5vw,3.2rem);line-height:1.15;margin-bottom:1rem}
+.hero-title em{font-style:italic;color:var(--mm)}
+.hero-sub{font-size:0.95rem;color:var(--ink-mid);line-height:1.85;margin-bottom:2rem}
+.meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.meta-label{font-size:0.72rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-light);margin-bottom:0.3rem}
+.meta-value{font-size:0.875rem;color:var(--ink-mid)}
+.hero-cover{background:var(--mm-light);border-radius:20px;height:360px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;border:1px solid var(--sand)}
+.hero-cover img{width:100%;height:100%;object-fit:cover}
+
+.content{max-width:780px;margin:0 auto;padding:0 2.5rem}
+.divider{border:none;border-top:1px solid var(--sand);margin:4rem 0}
+.section-label{font-size:1rem;font-weight:600;letter-spacing:0.04em;text-transform:uppercase;color:var(--mm);margin-bottom:0.75rem}
+.section-title{font-family:var(--serif);font-size:clamp(1.6rem,2.5vw,2.2rem);line-height:1.2;margin-bottom:1.25rem}
+.body-text{color:var(--ink-mid);line-height:1.9;margin-bottom:1rem;font-size:0.95rem}
+
+.pullquote{border-left:3px solid var(--mm);padding:1rem 1.5rem;margin:2rem 0;background:var(--warm-white);border-radius:0 10px 10px 0}
+.pullquote p{font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--ink);line-height:1.6}
+.pullquote cite{font-size:0.78rem;color:var(--ink-light);margin-top:0.5rem;display:block}
+
+/* Pieces gallery */
+.pieces-sublabel{font-size:0.72rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-light);margin:2.5rem 0 1rem}
+.pieces-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+.piece-slot{border-radius:14px;overflow:hidden;border:1px solid var(--sand);background:var(--warm-white)}
+.piece-img{background:var(--warm-white)}
+.piece-img img{width:100%;height:auto;object-fit:contain;display:block;cursor:zoom-in}
+.piece-label{padding:0.85rem 1rem;font-size:0.8rem;color:var(--ink-mid);font-weight:500;border-top:1px solid var(--sand)}
+
+.case-cta{background:var(--ink);border-radius:20px;padding:3rem;text-align:center;margin:4rem 0}
+.case-cta h3{font-family:var(--serif);font-size:1.6rem;color:var(--cream);margin-bottom:0.75rem}
+.case-cta p{font-size:0.9rem;color:#9C8B72;margin-bottom:1.75rem}
+.cta-btn{display:inline-flex;align-items:center;gap:0.5rem;background:var(--mm);color:white;text-decoration:none;font-size:0.875rem;font-weight:500;padding:0.85rem 2rem;border-radius:100px;transition:opacity 0.2s}
+.cta-btn:hover{opacity:0.85}
+.cta-secondary{display:inline-flex;align-items:center;gap:0.5rem;color:var(--sand);text-decoration:none;font-size:0.85rem;margin-left:1.5rem;border-bottom:1px solid #3C3022;padding-bottom:2px}
+.cta-secondary:hover{color:var(--mm-light)}
+
+footer{border-top:1px solid var(--sand);padding:2rem 2.5rem;display:flex;justify-content:space-between;align-items:center;max-width:1000px;margin:0 auto;font-size:0.78rem;color:var(--ink-light)}
+footer a{color:var(--ink-light);text-decoration:none}
+footer a:hover{color:var(--mm)}
+
+/* Lightbox */
+#mm-lightbox{display:none;position:fixed;inset:0;z-index:200;background:rgba(44,32,24,0.92);align-items:center;justify-content:center;cursor:zoom-out}
+#mm-lightbox.open{display:flex}
+#mm-lightbox img{max-width:90vw;max-height:90vh;object-fit:contain;border-radius:12px;cursor:default}
+#mm-lightbox-close{position:fixed;top:1.25rem;right:1.5rem;background:none;border:none;color:#FAF7F2;font-size:2rem;line-height:1;cursor:pointer;opacity:0.75;font-family:var(--sans);padding:0.25rem 0.5rem}
+#mm-lightbox-close:hover{opacity:1}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.case-hero>*{animation:fadeUp 0.6s ease both}
+.case-hero>*:nth-child(2){animation-delay:0.15s}
+
+@media(max-width:768px){
+  nav{padding:1rem 1.25rem}
+  .case-hero{grid-template-columns:1fr;gap:2rem;padding:6rem 1.25rem 3rem}
+  .content{padding:0 1.25rem}
+  .meta-grid{grid-template-columns:1fr}
+  .pieces-grid-2{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-back" id="mm-nav-back">← Back to portfolio</a>
+  <div class="nav-logo" id="mm-nav-logo">Willa Wei</div>
+  <button id="mm-lang-toggle" onclick="toggleMMLang()" style="background:var(--warm-white);border:1.5px solid var(--sand);color:var(--ink-mid);font-size:0.8rem;padding:0.35rem 0.9rem;border-radius:100px;cursor:pointer;font-family:var(--sans);transition:all 0.2s">中文模式</button>
+</nav>
+
+<!-- HERO -->
+<div class="case-hero">
+  <div>
+    <div class="hero-tag" id="mm-hero-tag">Illustration · Character Design · Client Work</div>
+    <h1 class="hero-title" id="mm-hero-title">Casts of Characters for <em>Three Murder Mysteries</em></h1>
+    <p class="hero-sub" id="mm-hero-sub">Character illustrations and cover art created for three commissioned murder mystery games, ranging from historical romance to contemporary detective thrillers. Across nineteen character cards and three covers, the challenge was to give each cast a distinct visual identity — through silhouette, costume, expression, and mood — so players could immediately understand who they were stepping into.</p>
+    <div class="meta-grid">
+      <div class="meta-item"><div class="meta-label" id="mm-ml1">Role</div><div class="meta-value" id="mm-mv1">Illustration &amp; Character Design</div></div>
+      <div class="meta-item"><div class="meta-label" id="mm-ml2">Type</div><div class="meta-value" id="mm-mv2">Murder Mystery Games (×3)</div></div>
+      <div class="meta-item"><div class="meta-label" id="mm-ml3">Year</div><div class="meta-value" id="mm-mv3">2021</div></div>
+      <div class="meta-item"><div class="meta-label" id="mm-ml4">Scope</div><div class="meta-value" id="mm-mv4">19 Character Cards · 3 Covers</div></div>
+    </div>
+  </div>
+  <div class="hero-cover">
+    <img src="images/mm-hero.jpg" alt="Murder mystery hero" />
+  </div>
+</div>
+
+<div class="content">
+
+  <!-- THE BRIEF -->
+  <div class="section-label" id="mm-sl1">The brief</div>
+  <h2 class="section-title" id="mm-st1">Three scripts, three worlds</h2>
+  <p class="body-text" id="mm-bt1">I was commissioned to create character illustrations and cover art for three murder mystery games. In this genre, players step into a character for an evening, making first impressions especially important. Each character card needed to communicate not only who a person was, but also their era, social role, and the narrative tension surrounding them — inviting players into the story before the game had even begun.</p>
+  <p class="body-text" id="mm-bt2">The three scripts spanned very different tones — one a period romance, two modern detective thrillers — but each needed a cohesive cast that felt like it came from one world, with a cover strong enough to set the mood the moment players opened the box.</p>
+
+  <hr class="divider"/>
+
+  <!-- THE APPROACH -->
+  <div class="section-label" id="mm-sl2">The approach</div>
+  <h2 class="section-title" id="mm-st2">A face you can read before the first clue</h2>
+  <p class="body-text" id="mm-bt3">For each script I started from the characters' roles in the story — their status, secrets, and relationships — and translated those into visual cues: costume, palette, posture, and expression. In a murder mystery, players form impressions instantly, so I leaned on silhouette and color to make each character distinct and memorable, while keeping every card in a cast visually consistent.</p>
+
+  <div class="pullquote">
+    <p id="mm-pq1">"Each character had to feel like a stranger with a story — familiar enough to inhabit, mysterious enough to suspect."</p>
+    <cite id="mm-pq1-cite">— Design intent</cite>
+  </div>
+
+  <hr class="divider"/>
+
+  <!-- THE WORK -->
+  <div class="section-label" id="mm-sl3">The work</div>
+  <h2 class="section-title" id="mm-st3">Nineteen characters, three casts</h2>
+
+  <!-- Script 1 -->
+  <div class="pieces-sublabel" id="mm-sub1">Script 1 — Period Romance</div>
+  <p class="body-text" id="mm-d1">A fantasy royal romance rendered in soft, painterly tones — mirrors, blossoms, and flowing hanfu woven into a world of longing, secrets, and intertwined fates. The project included six character cards, along with front and back cover illustrations.</p>
+  <div class="pieces-grid-2">
+    <div class="piece-slot">
+      <div class="piece-img">
+        <img src="images/mm-s1-cover.jpg" alt="Script 1 front cover" />
+      </div>
+      <div class="piece-label" id="mm-s1-l0">Front cover</div>
+    </div>
+    <div class="piece-slot">
+      <div class="piece-img">
+        <img src="images/mm-s1-back.jpg" alt="Script 1 back cover" />
+      </div>
+      <div class="piece-label" id="mm-s1-lb">Back cover</div>
+    </div>
+    <div class="piece-slot">
+      <div class="piece-img">
+        <img src="images/mm-s1-char1.jpg" alt="Script 1 character card 1" />
+      </div>
+      <div class="piece-label" id="mm-s1-l1">Character card</div>
+    </div>
+    <div class="piece-slot">
+      <div class="piece-img">
+        <img src="images/mm-s1-char2.jpg" alt="Script 1 character card 2" />
+      </div>
+      <div class="piece-label" id="mm-s1-l2">Character card</div>
+    </div>
+    <div class="piece-slot">
+      <div class="piece-img">
+        <img src="images/mm-s1-char3.jpg" alt="Script 1 character card 3" />
+      </div>
+      <div class="piece-label" id="mm-s1-l3">Character card</div>
+    </div>
+    <div class="piece-slot">
+      <div class="piece-img">
+        <img src="images/mm-s1-char4.jpg" alt="Script 1 character card 4" />
+      </div>
+      <div class="piece-label" id="mm-s1-l4">Character card</div>
+    </div>
+    <div class="piece-slot">
+      <div class="piece-img">
+        <img src="images/mm-s1-char5.jpg" alt="Script 1 character card 5" />
+      </div>
+      <div class="piece-label" id="mm-s1-l5">Character card</div>
+    </div>
+    <div class="piece-slot">
+      <div class="piece-img">
+        <img src="images/mm-s1-char6.jpg" alt="Script 1 character card 6" />
+      </div>
+      <div class="piece-label" id="mm-s1-l6">Character card</div>
+    </div>
+  </div>
+
+  <!-- Script 2 -->
+  <div class="pieces-sublabel" id="mm-sub2">Script 2 — Modern Detective</div>
+  <p class="body-text" id="mm-d2">A modern mystery thriller built around six characters trapped in their own emotional swamps. Dark, desaturated tones and heavy shadows reflect their guilt, resentment, and hidden desires, while a single thread of light hints at the hope they cannot fully abandon. The project included six character cards and a cover illustration.</p>
+  <div class="pieces-grid-2">
+    <div class="piece-slot">
+      <div class="piece-img">
+        <img src="images/mm-s2-cover.jpg" alt="Script 2 cover" />
+      </div>
+      <div class="piece-label" id="mm-s2-l0">Cover</div>
+    </div>
+    <div class="piece-slot">
+      <div class="piece-img">
+        <img src="images/mm-s2-char1.jpg" alt="Script 2 character card 1" />
+      </div>
+      <div class="piece-label" id="mm-s2-l1">Character card</div>
+    </div>
+    <div class="piece-slot">
+      <div class="piece-img">
+        <img src="images/mm-s2-char2.jpg" alt="Script 2 character card 2" />
+      </div>
+      <div class="piece-label" id="mm-s2-l2">Character card</div>
+    </div>
+    <div class="piece-slot">
+      <div class="piece-img">
+        <img src="images/mm-s2-char3.jpg" alt="Script 2 character card 3" />
+      </div>
+      <div class="piece-label" id="mm-s2-l3">Character card</div>
+    </div>
+    <div class="piece-slot">
+      <div class="piece-img">
+        <img src="images/mm-s2-char4.jpg" alt="Script 2 character card 4" />
+      </div>
+      <div class="piece-label" id="mm-s2-l4">Character card</div>
+    </div>
+    <div class="piece-slot">
+      <div class="piece-img">
+        <img src="images/mm-s2-char5.jpg" alt="Script 2 character card 5" />
+      </div>
+      <div class="piece-label" id="mm-s2-l5">Character card</div>
+    </div>
+    <div class="piece-slot">
+      <div class="piece-img">
+        <img src="images/mm-s2-char6.jpg" alt="Script 2 character card 6" />
+      </div>
+      <div class="piece-label" id="mm-s2-l6">Character card</div>
+    </div>
+  </div>
+
+  <!-- Script 3 -->
+  <div class="pieces-sublabel" id="mm-sub3">Script 3 — Modern Detective</div>
+  <p class="body-text" id="mm-d3">A character-driven mystery thriller built around long-buried secrets and relationships shaped by time. Rather than relying on a single visual motif, the focus was on giving each character a distinct presence while hinting at the hidden motives and histories that connect them. The project included seven character cards.</p>
+  <div class="pieces-grid-2">
+    <div class="piece-slot">
+      <div class="piece-img">
+        <img src="images/mm-s3-char1.jpg" alt="Script 3 character card 1" />
+      </div>
+      <div class="piece-label" id="mm-s3-l1">Character card</div>
+    </div>
+    <div class="piece-slot">
+      <div class="piece-img">
+        <img src="images/mm-s3-char2.jpg" alt="Script 3 character card 2" />
+      </div>
+      <div class="piece-label" id="mm-s3-l2">Character card</div>
+    </div>
+    <div class="piece-slot">
+      <div class="piece-img">
+        <img src="images/mm-s3-char3.jpg" alt="Script 3 character card 3" />
+      </div>
+      <div class="piece-label" id="mm-s3-l3">Character card</div>
+    </div>
+    <div class="piece-slot">
+      <div class="piece-img">
+        <img src="images/mm-s3-char4.jpg" alt="Script 3 character card 4" />
+      </div>
+      <div class="piece-label" id="mm-s3-l4">Character card</div>
+    </div>
+    <div class="piece-slot">
+      <div class="piece-img">
+        <img src="images/mm-s3-char5.jpg" alt="Script 3 character card 5" />
+      </div>
+      <div class="piece-label" id="mm-s3-l5">Character card</div>
+    </div>
+    <div class="piece-slot">
+      <div class="piece-img">
+        <img src="images/mm-s3-char6.jpg" alt="Script 3 character card 6" />
+      </div>
+      <div class="piece-label" id="mm-s3-l6">Character card</div>
+    </div>
+    <div class="piece-slot">
+      <div class="piece-img">
+        <img src="images/mm-s3-char7.jpg" alt="Script 3 character card 7" />
+      </div>
+      <div class="piece-label" id="mm-s3-l7">Character card</div>
+    </div>
+  </div>
+
+  <div class="case-cta">
+    <h3 id="mm-cta-title">Need characters brought to life?</h3>
+    <p id="mm-cta-sub">This was one of several illustration commissions. Reach out to see more character and visual work, or to talk about a project.</p>
+    <a href="mailto:willawei624@gmail.com" class="cta-btn" id="mm-cta-btn">Get in touch ↗</a>
+    <a href="index.html" class="cta-secondary" id="mm-cta-back">← Back to portfolio</a>
+  </div>
+
+</div>
+
+<div id="mm-lightbox" role="dialog" aria-modal="true" aria-label="Image zoom">
+  <button id="mm-lightbox-close" aria-label="Close">&times;</button>
+  <img id="mm-lightbox-img" src="" alt="" />
+</div>
+
+<footer>
+  <span id="mm-footer-copy">© 2025 Willa Wei · UX &amp; Visual Designer</span>
+  <span><a href="#top" id="mm-footer-top">Back to top ↑</a></span>
+</footer>
+
+<script>
+const mmT = {
+  'mm-nav-back':   ['← Back to portfolio', '← 返回作品集'],
+  'mm-nav-logo':   ['Willa Wei', '薇拉·魏'],
+  'mm-hero-tag':   ['Illustration · Character Design · Client Work', '插画 · 角色设计 · 商业委托'],
+  'mm-hero-title': ['Casts of Characters for <em>Three Murder Mysteries</em>', '为三个剧本杀打造的<em>角色群像</em>'],
+  'mm-hero-sub':   ['Character illustrations and cover art created for three commissioned murder mystery games, ranging from historical romance to contemporary detective thrillers. Across nineteen character cards and three covers, the challenge was to give each cast a distinct visual identity — through silhouette, costume, expression, and mood — so players could immediately understand who they were stepping into.', '为三个委托剧本杀项目创作角色插画与封面设计，涵盖古风情感与现代推理等不同题材。每个故事都拥有独立的世界观与人物关系，因此角色设计不仅需要区分外貌与服饰，更需要传达身份、性格与故事氛围，让玩家在第一眼便感受到角色背后的叙事线索。'],
+  'mm-ml1':        ['Role', '角色'],
+  'mm-mv1':        ['Illustration &amp; Character Design', '插画与角色设计'],
+  'mm-ml2':        ['Type', '类型'],
+  'mm-mv2':        ['Murder Mystery Games (×3)', '剧本杀游戏（三部）'],
+  'mm-ml3':        ['Year', '年份'],
+  'mm-mv3':        ['2021', '2021'],
+  'mm-ml4':        ['Scope', '规模'],
+  'mm-mv4':        ['19 Character Cards · 3 Covers', '19 张角色卡 · 3 张封面'],
+  'mm-sl1':        ['The brief', '项目背景'],
+  'mm-st1':        ['Three scripts, three worlds', '三个剧本，三种截然不同的冒险。'],
+  'mm-bt1':        ['I was commissioned to create character illustrations and cover art for three murder mystery games. In this genre, players step into a character for an evening, making first impressions especially important. Each character card needed to communicate not only who a person was, but also their era, social role, and the narrative tension surrounding them — inviting players into the story before the game had even begun.', '我为三个剧本杀项目绘制角色插画与封面。对于这类以角色驱动的叙事游戏而言，视觉设计往往是玩家接触故事的第一扇窗口。一张角色卡不仅需要塑造人物形象，更需要传达时代背景、身份信息与潜在的故事张力，让玩家在翻开剧本之前，便对即将扮演的角色产生想象。'],
+  'mm-bt2':        ['The three scripts spanned very different tones — one a period romance, two modern detective thrillers — but each needed a cohesive cast that felt like it came from one world, with a cover strong enough to set the mood the moment players opened the box.', '虽然三个剧本的题材与氛围截然不同——从古风情感到现代悬疑推理——但每个项目都需要建立统一而可信的角色世界。无论是人物设计还是封面创作，目标都是在玩家打开盒子的那一刻，便让故事的情绪与气质扑面而来。'],
+  'mm-sl2':        ['The approach', '设计方法'],
+  'mm-st2':        ['A face you can read before the first clue', '先读懂角色，再寻找真相'],
+  'mm-bt3':        ['For each script I started from the characters\' roles in the story — their status, secrets, and relationships — and translated those into visual cues: costume, palette, posture, and expression. In a murder mystery, players form impressions instantly, so I leaned on silhouette and color to make each character distinct and memorable, while keeping every card in a cast visually consistent.', '角色设计的起点并非外貌，而是故事本身。我从人物的身份、关系与秘密出发，将这些叙事信息转化为服饰、色彩、姿态与表情等视觉元素。由于玩家会在短时间内建立对角色的认知，因此每个角色都需要拥有鲜明的个性，同时又能与其他人物共同构成统一而可信的故事世界。'],
+  'mm-pq1':        ['"Each character had to feel like a stranger with a story — familiar enough to inhabit, mysterious enough to suspect."', '"每个角色都需要在熟悉与神秘之间取得平衡——让玩家愿意代入，也让玩家愿意怀疑。"'],
+  'mm-pq1-cite':   ['— Design intent', '— 设计理念'],
+  'mm-sl3':        ['The work', '成品展示'],
+  'mm-st3':        ['Nineteen characters, three casts', '塑造十九种角色人生'],
+  'mm-sub1':       ['Script 1 — Period Romance', '剧本一 — 古风情感本'],
+  'mm-d1':         ['A fantasy royal romance rendered in soft, painterly tones — mirrors, blossoms, and flowing hanfu woven into a world of longing, secrets, and intertwined fates. The project included six character cards, along with front and back cover illustrations.', '架空皇室背景下的古风情感故事，以柔和而梦幻的绘画风格呈现。镜中幻境、繁花意象与飘逸的服饰共同营造出浪漫而带有宿命感的氛围。项目包含六张角色卡，以及封面与封底插画设计。'],
+  'mm-s1-l0':      ['Front cover', '封面'],
+  'mm-s1-lb':      ['Back cover', '封底'],
+  'mm-s1-l1':      ['Character card', '角色卡'],
+  'mm-s1-l2':      ['Character card', '角色卡'],
+  'mm-s1-l3':      ['Character card', '角色卡'],
+  'mm-s1-l4':      ['Character card', '角色卡'],
+  'mm-s1-l5':      ['Character card', '角色卡'],
+  'mm-s1-l6':      ['Character card', '角色卡'],
+  'mm-sub2':       ['Script 2 — Modern Detective', '剧本二 — 现代推理本'],
+  'mm-d2':         ['A modern mystery thriller built around six characters trapped in their own emotional swamps. Dark, desaturated tones and heavy shadows reflect their guilt, resentment, and hidden desires, while a single thread of light hints at the hope they cannot fully abandon. The project included six character cards and a cover illustration.', '一部现代悬疑推理作品，以六位深陷内心泥沼的人物为核心。压抑的色调与浓重的阴影映射着他们的欲望、愧疚与嫉妒，而画面中若隐若现的光则象征着他们始终无法彻底放弃的救赎与希望。项目包含六张角色卡及封面设计。'],
+  'mm-s2-l0':      ['Cover', '封面'],
+  'mm-s2-l1':      ['Character card', '角色卡'],
+  'mm-s2-l2':      ['Character card', '角色卡'],
+  'mm-s2-l3':      ['Character card', '角色卡'],
+  'mm-s2-l4':      ['Character card', '角色卡'],
+  'mm-s2-l5':      ['Character card', '角色卡'],
+  'mm-s2-l6':      ['Character card', '角色卡'],
+  'mm-sub3':       ['Script 3 — Modern Detective', '剧本三 — 现代推理本'],
+  'mm-d3':         ['A character-driven mystery thriller built around long-buried secrets and relationships shaped by time. Rather than relying on a single visual motif, the focus was on giving each character a distinct presence while hinting at the hidden motives and histories that connect them. The project included seven character cards.', '一部围绕陈年往事展开的硬核推理作品。随着真相逐步揭开，每位角色隐藏多年的秘密与算计也浮出水面。角色设计不只是塑造外貌，更需要传达人物背后的经历、身份与复杂立场，让观众在故事开始之前便感受到暗流涌动的人物关系。项目包含七张角色卡。'],
+  'mm-s3-l1':      ['Character card', '角色卡'],
+  'mm-s3-l2':      ['Character card', '角色卡'],
+  'mm-s3-l3':      ['Character card', '角色卡'],
+  'mm-s3-l4':      ['Character card', '角色卡'],
+  'mm-s3-l5':      ['Character card', '角色卡'],
+  'mm-s3-l6':      ['Character card', '角色卡'],
+  'mm-s3-l7':      ['Character card', '角色卡'],
+  'mm-cta-title':  ['Need characters brought to life?', '让故事中的角色拥有面孔'],
+  'mm-cta-sub':    ['This was one of several illustration commissions. Reach out to see more character and visual work, or to talk about a project.', '这是我多个插画委托项目之一。如果你也有角色设计、插画或视觉叙事相关需求，欢迎与我联系，一起聊聊你的项目。'],
+  'mm-cta-btn':    ['Get in touch ↗', '联系我 ↗'],
+  'mm-cta-back':   ['← Back to portfolio', '← 返回作品集'],
+  'mm-footer-copy':['© 2025 Willa Wei · UX & Visual Designer', '© 2025 薇拉·魏（魏卓萱）· UX 设计师 / 视觉设计师'],
+  'mm-footer-top': ['Back to top ↑', '返回顶部 ↑'],
+};
+
+let mmLang = 'en';
+function toggleMMLang() {
+  mmLang = mmLang === 'en' ? 'zh' : 'en';
+  const i = mmLang === 'en' ? 0 : 1;
+  document.getElementById('mm-lang-toggle').textContent = mmLang === 'en' ? '中文模式' : 'English Mode';
+  for (const id in mmT) {
+    const el = document.getElementById(id);
+    if (el) el.innerHTML = mmT[id][i];
+  }
+}
+
+(function() {
+  const overlay  = document.getElementById('mm-lightbox');
+  const lightImg = document.getElementById('mm-lightbox-img');
+  const closeBtn = document.getElementById('mm-lightbox-close');
+
+  function openLightbox(src, alt) {
+    lightImg.src = src;
+    lightImg.alt = alt;
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('.piece-img img').forEach(function(img) {
+    img.addEventListener('click', function() { openLightbox(img.src, img.alt); });
+  });
+  overlay.addEventListener('click', function(e) { if (e.target === overlay) closeLightbox(); });
+  closeBtn.addEventListener('click', closeLightbox);
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && overlay.classList.contains('open')) closeLightbox();
+  });
+})();
+</script>
+</body>
+</html>

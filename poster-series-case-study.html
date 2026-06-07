@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Poster, Invitation & Program Series — Case Study · Willa Wei</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --cream:#FAF7F2;--warm-white:#F5EFE4;--sand:#E8DECE;
+  --ps:#C0392B;--ps-light:#F5D5CC;--ps-dark:#8C2718;
+  --terracotta:#C8724A;--terracotta-light:#F0C4A8;
+  --ink:#2C2018;--ink-mid:#5C4F3A;--ink-light:#9C8B72;
+  --serif:'DM Serif Display',Georgia,serif;
+  --sans:'DM Sans',system-ui,sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--cream);color:var(--ink);font-size:16px;line-height:1.7;overflow-x:hidden}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(250,247,242,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--sand);display:flex;align-items:center;justify-content:space-between;padding:1rem 2.5rem}
+.nav-back{font-size:0.875rem;color:var(--ink-mid);text-decoration:none;display:flex;align-items:center;gap:0.4rem;transition:color 0.2s}
+.nav-back:hover{color:var(--ps)}
+.nav-logo{font-family:var(--serif);font-size:1.1rem;color:var(--ink)}
+
+.case-hero{padding:8rem 2.5rem 5rem;max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.hero-tag{display:inline-block;background:var(--ps-light);color:var(--ps-dark);font-size:0.75rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;padding:0.3rem 0.85rem;border-radius:100px;margin-bottom:1.25rem}
+.hero-title{font-family:var(--serif);font-size:clamp(2rem,3.5vw,3.2rem);line-height:1.15;margin-bottom:1rem}
+.hero-title em{font-style:italic;color:var(--ps)}
+.hero-sub{font-size:0.95rem;color:var(--ink-mid);line-height:1.85;margin-bottom:2rem}
+.meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.meta-label{font-size:0.72rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-light);margin-bottom:0.3rem}
+.meta-value{font-size:0.875rem;color:var(--ink-mid)}
+.hero-cover{background:var(--ps-light);border-radius:20px;height:360px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;border:1px solid var(--sand)}
+.hero-cover img{width:100%;height:100%;object-fit:cover}
+
+.content{max-width:780px;margin:0 auto;padding:0 2.5rem}
+.divider{border:none;border-top:1px solid var(--sand);margin:4rem 0}
+.section-label{font-size:1rem;font-weight:600;letter-spacing:0.04em;text-transform:uppercase;color:var(--ps);margin-bottom:0.75rem}
+.section-title{font-family:var(--serif);font-size:clamp(1.6rem,2.5vw,2.2rem);line-height:1.2;margin-bottom:1.25rem}
+.body-text{color:var(--ink-mid);line-height:1.9;margin-bottom:1rem;font-size:0.95rem}
+
+.pullquote{border-left:3px solid var(--ps);padding:1rem 1.5rem;margin:2rem 0;background:var(--warm-white);border-radius:0 10px 10px 0}
+.pullquote p{font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--ink);line-height:1.6}
+.pullquote cite{font-size:0.78rem;color:var(--ink-light);margin-top:0.5rem;display:block}
+
+.feature-block{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:center;margin:2.5rem 0}
+.feature-block.reverse{direction:rtl}
+.feature-block.reverse>*{direction:ltr}
+.feature-img{background:var(--ps-light);border-radius:16px;height:240px;display:flex;align-items:center;justify-content:center;font-size:3rem;border:1px solid var(--sand);overflow:hidden}
+.feature-img img{width:100%;height:100%;object-fit:cover}
+.feature-tag{font-size:0.72rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--ps);margin-bottom:0.5rem}
+.feature-title{font-family:var(--serif);font-size:1.2rem;margin-bottom:0.6rem}
+.feature-desc{font-size:0.85rem;color:var(--ink-mid);line-height:1.75}
+
+/* Pieces gallery */
+.pieces-sublabel{font-size:0.72rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-light);margin:2.5rem 0 1rem}
+.pieces-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+.piece-slot{border-radius:14px;overflow:hidden;border:1px solid var(--sand);background:var(--warm-white)}
+.piece-img{background:var(--warm-white)}
+.piece-img img{width:100%;height:auto;object-fit:contain;display:block;cursor:zoom-in}
+.piece-label{padding:0.85rem 1rem;font-size:0.8rem;color:var(--ink-mid);font-weight:500;border-top:1px solid var(--sand)}
+
+/* Lightbox */
+#ps-lightbox{display:none;position:fixed;inset:0;z-index:200;background:rgba(44,32,24,0.92);align-items:center;justify-content:center;cursor:zoom-out}
+#ps-lightbox.open{display:flex}
+#ps-lightbox img{max-width:90vw;max-height:90vh;object-fit:contain;border-radius:12px;cursor:default}
+#ps-lightbox-close{position:fixed;top:1.25rem;right:1.5rem;background:none;border:none;color:#FAF7F2;font-size:2rem;line-height:1;cursor:pointer;opacity:0.75;font-family:var(--sans);padding:0.25rem 0.5rem}
+#ps-lightbox-close:hover{opacity:1}
+
+.case-cta{background:var(--ink);border-radius:20px;padding:3rem;text-align:center;margin:4rem 0}
+.case-cta h3{font-family:var(--serif);font-size:1.6rem;color:var(--cream);margin-bottom:0.75rem}
+.case-cta p{font-size:0.9rem;color:#9C8B72;margin-bottom:1.75rem}
+.cta-btn{display:inline-flex;align-items:center;gap:0.5rem;background:var(--ps);color:white;text-decoration:none;font-size:0.875rem;font-weight:500;padding:0.85rem 2rem;border-radius:100px;transition:opacity 0.2s}
+.cta-btn:hover{opacity:0.85}
+.cta-secondary{display:inline-flex;align-items:center;gap:0.5rem;color:var(--sand);text-decoration:none;font-size:0.85rem;margin-left:1.5rem;border-bottom:1px solid #3C3022;padding-bottom:2px}
+.cta-secondary:hover{color:var(--ps-light)}
+
+footer{border-top:1px solid var(--sand);padding:2rem 2.5rem;display:flex;justify-content:space-between;align-items:center;max-width:1000px;margin:0 auto;font-size:0.78rem;color:var(--ink-light)}
+footer a{color:var(--ink-light);text-decoration:none}
+footer a:hover{color:var(--ps)}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.case-hero>*{animation:fadeUp 0.6s ease both}
+.case-hero>*:nth-child(2){animation-delay:0.15s}
+
+@media(max-width:768px){
+  nav{padding:1rem 1.25rem}
+  .case-hero{grid-template-columns:1fr;gap:2rem;padding:6rem 1.25rem 3rem}
+  .content{padding:0 1.25rem}
+  .feature-block,.feature-block.reverse{grid-template-columns:1fr}
+  .feature-block.reverse{direction:ltr}
+  .meta-grid{grid-template-columns:1fr}
+  .pieces-grid-2{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-back" id="ps-nav-back">← Back to portfolio</a>
+  <div class="nav-logo" id="ps-nav-logo">Willa Wei</div>
+  <button id="ps-lang-toggle" onclick="togglePSLang()" style="background:var(--warm-white);border:1.5px solid var(--sand);color:var(--ink-mid);font-size:0.8rem;padding:0.35rem 0.9rem;border-radius:100px;cursor:pointer;font-family:var(--sans);transition:all 0.2s">中文模式</button>
+</nav>
+
+<!-- HERO -->
+<div class="case-hero">
+  <div>
+    <div class="hero-tag" id="ps-hero-tag">Visual Design · Print Series · Client Work</div>
+    <h1 class="hero-title" id="ps-hero-title">A Guzheng Recital, Wrapped in <em>Autumn Maple</em></h1>
+    <p class="hero-sub" id="ps-hero-sub">A complete visual identity for a graduate guzheng recital at Beijing Normal University — five coordinated print pieces unified by a single autumnal, ink-wash aesthetic that echoes the warmth and heritage of traditional Chinese music.</p>
+    <div class="meta-grid">
+      <div class="meta-item"><div class="meta-label" id="ps-ml1">Role</div><div class="meta-value" id="ps-mv1">Visual &amp; Print Design</div></div>
+      <div class="meta-item"><div class="meta-label" id="ps-ml2">Client</div><div class="meta-value" id="ps-mv2">Guzheng Performer (BNU)</div></div>
+      <div class="meta-item"><div class="meta-label" id="ps-ml3">Year</div><div class="meta-value" id="ps-mv3">2025</div></div>
+      <div class="meta-item"><div class="meta-label" id="ps-ml4">Deliverables</div><div class="meta-value" id="ps-mv4">Poster · Invitation (2pp) · Program (2pp)</div></div>
+    </div>
+  </div>
+  <div class="hero-cover">
+    <img src="images/recital-hero.jpg" alt="Poster series cover" />
+  </div>
+</div>
+
+<div class="content">
+
+  <div class="section-label" id="ps-sl1">The brief</div>
+  <h2 class="section-title" id="ps-st1">From Posters to Programs: A Visual Narrative for a Guzheng Recital</h2>
+  <p class="body-text" id="ps-bt1">TA master's student in guzheng performance approached me to design the visual identity for her recital. Spanning five different touchpoints, the project explored how a single visual language could connect posters, programs, tickets, and event materials into one coherent experience—balancing contemporary design with the timeless elegance of traditional Chinese music.</p>
+  <p class="body-text" id="ps-bt2">The project spanned five pieces, including a poster, invitation, and folded program. Despite their different formats and functions, each piece was designed to feel like part of a cohesive visual system.</p>
+
+  <hr class="divider"/>
+
+  <!-- CONCEPT -->
+  <div class="section-label" id="ps-sl2">The concept</div>
+  <h2 class="section-title" id="ps-st2">Maple, ink, and the warmth of strings</h2>
+  <p class="body-text" id="ps-bt3">The visual system was built around autumn maple leaves, paired with a vermilion-red palette and ink-wash textures. The falling leaves introduce rhythm and movement, while the warm red tones reinforce the recital's sense of ceremony. Together, these elements create a cohesive identity that reflects both the season and the character of the performance.</p>
+
+  <div class="pullquote">
+    <p id="ps-pq1">"Every piece was designed to feel like it came from the same autumn — sharing the same red palette, the same drifting maple leaves, and the same quiet sense of warmth."</p>
+    <cite id="ps-pq1-cite">— Design intent</cite>
+  </div>
+
+  <p class="body-text" id="ps-bt4">Calligraphic titles and vertical typography became key elements throughout the system, bringing a distinct sense of Chinese aesthetics while naturally complementing the character of the guzheng. At the same time, they helped balance cultural expression with clarity across different formats.</p>
+
+  <hr class="divider"/>
+
+  <!-- THE SYSTEM -->
+  <div class="section-label" id="ps-sl3">The system</div>
+  <h2 class="section-title" id="ps-st3">Palette, type, and motif — three elements, one language</h2>
+
+  <div class="feature-block">
+    <div class="feature-img">
+      <img src="images/recital-palette.jpg" alt="Color palette" />
+    </div>
+    <div>
+      <div class="feature-tag" id="ps-ft1">Palette &amp; Motif</div>
+      <div class="feature-title" id="ps-fti1">Vermilion red, maple, ink</div>
+      <div class="feature-desc" id="ps-fd1">A warm vermilion red over aged-paper cream, with scattered maple leaves and ink-splatter accents recurring across every piece. The palette stays consistent so the materials read as one family at a glance.</div>
+    </div>
+  </div>
+
+  <div class="feature-block reverse">
+    <div class="feature-img">
+      <img src="images/recital-typography.jpg" alt="Typography system" />
+    </div>
+    <div>
+      <div class="feature-tag" id="ps-ft2">Typography</div>
+      <div class="feature-title" id="ps-fti2">Calligraphy meets vertical type</div>
+      <div class="feature-desc" id="ps-fd2">Expressive brush-calligraphy titles are paired with clean vertical Chinese typography, creating a balance between cultural character and readability. The result feels rooted in tradition while remaining clear and functional across invitations, programs, and promotional materials.</div>
+    </div>
+  </div>
+
+  <div class="feature-block">
+    <div class="feature-img">
+      <img src="images/recital-imagery.jpg" alt="Illustration motif" />
+    </div>
+    <div>
+      <div class="feature-tag" id="ps-ft3">Visual Elements</div>
+      <div class="feature-title" id="ps-fti3">Performer, blended into the season</div>
+      <div class="feature-desc" id="ps-fd3">Portraits of the performer are blended into the ink-and-maple backgrounds with soft duotones, so the photography feels painted into the world rather than dropped on top of it.</div>
+    </div>
+  </div>
+
+  <hr class="divider"/>
+
+  <!-- THE PIECES -->
+  <div class="section-label" id="ps-sl4">The pieces</div>
+  <h2 class="section-title" id="ps-st4">Five pieces, one autumn</h2>
+
+  <div class="piece-slot">
+    <div class="piece-img">
+      <img src="images/recital-poster.jpg" alt="Main Poster" />
+    </div>
+    <div class="piece-label" id="ps-piece1-label">Main Poster — vertical event poster</div>
+  </div>
+
+  <div class="pieces-sublabel" id="ps-sublabel-invitation">Invitation</div>
+  <div class="pieces-grid-2">
+    <div class="piece-slot">
+      <div class="piece-img">
+        <img src="images/recital-invitation-outer.png" alt="Invitation outer page" />
+      </div>
+      <div class="piece-label" id="ps-piece2-label">Outer page</div>
+    </div>
+    <div class="piece-slot">
+      <div class="piece-img">
+        <img src="images/recital-invitation-inner.png" alt="Invitation inner page" />
+      </div>
+      <div class="piece-label" id="ps-piece3-label">Inner page</div>
+    </div>
+  </div>
+
+  <div class="pieces-sublabel" id="ps-sublabel-program">Program</div>
+  <div class="pieces-grid-2">
+    <div class="piece-slot">
+      <div class="piece-img">
+        <img src="images/recital-program-outer.jpg" alt="Program outer page" />
+      </div>
+      <div class="piece-label" id="ps-piece4-label">Outer page</div>
+    </div>
+    <div class="piece-slot">
+      <div class="piece-img">
+        <img src="images/recital-program-inner.jpg" alt="Program inner page" />
+      </div>
+      <div class="piece-label" id="ps-piece5-label">Inner page</div>
+    </div>
+  </div>
+
+  <div class="case-cta">
+    <h3 id="ps-cta-title">Like the warmth in this work?</h3>
+    <p id="ps-cta-sub">This was one of several client print projects. Reach out to see more visual &amp; illustration work, or to talk about a commission.</p>
+    <a href="mailto:willawei624@gmail.com" class="cta-btn" id="ps-cta-btn">Get in touch ↗</a>
+    <a href="index.html" class="cta-secondary" id="ps-cta-back">← Back to portfolio</a>
+  </div>
+
+</div>
+
+<div id="ps-lightbox" role="dialog" aria-modal="true" aria-label="Image zoom">
+  <button id="ps-lightbox-close" aria-label="Close">&times;</button>
+  <img id="ps-lightbox-img" src="" alt="" />
+</div>
+
+<footer>
+  <span id="ps-footer-copy">© 2025 Willa Wei · UX &amp; Visual Designer</span>
+  <span><a href="#top" id="ps-footer-top">Back to top ↑</a></span>
+</footer>
+
+<script>
+const psT = {
+  'ps-nav-back':       ['← Back to portfolio', '← 返回作品集'],
+  'ps-nav-logo':       ['Willa Wei', '薇拉·魏'],
+  'ps-hero-tag':       ['Visual Design · Print Series · Client Work', '视觉设计 · 系列物料 · 商业委托'],
+  'ps-hero-title':     ['A Guzheng Recital, Wrapped in <em>Autumn Maple</em>', '一场古筝音乐会的<em>国风视觉</em>'],
+  'ps-hero-sub':       ['A complete visual identity for a graduate guzheng recital at Beijing Normal University — five coordinated print pieces unified by a single autumnal, ink-wash aesthetic that echoes the warmth and heritage of traditional Chinese music.', '为北京师范大学一场古筝硕士中期音乐会打造的整套视觉物料——五件相互呼应的印刷设计，以统一的秋意水墨美学贯穿，呼应古筝这一传统民乐的温度与底蕴。'],
+  'ps-ml1':            ['Role', '角色'],
+  'ps-mv1':            ['Visual &amp; Print Design', '视觉与平面设计'],
+  'ps-ml2':            ['Client', '客户'],
+  'ps-mv2':            ['Guzheng Performer (BNU)', '古筝演奏者（北师大）'],
+  'ps-ml3':            ['Year', '年份'],
+  'ps-mv3':            ['2025', '2025'],
+  'ps-ml4':            ['Deliverables', '交付物'],
+  'ps-mv4':            ['Poster · Invitation (2pp) · Program (2pp)', '海报 · 邀请函（内外页）· 节目单（内外页）'],
+  'ps-sl1':            ['The brief', '项目背景'],
+  'ps-st1':            ['From Posters to Programs: A Visual Narrative for a Guzheng Recital', '从海报到节目册，一场音乐会的视觉叙事。'],
+  'ps-bt1':            ['TA master\'s student in guzheng performance approached me to design the visual identity for her recital. Spanning five different touchpoints, the project explored how a single visual language could connect posters, programs, tickets, and event materials into one coherent experience—balancing contemporary design with the timeless elegance of traditional Chinese music.', '一位古筝表演专业硕士研究生委托我为其中期音乐会设计整体视觉形象。项目涵盖五类不同的宣传与活动物料，探索如何以统一的视觉语言串联从海报到节目册的完整体验，在当代设计表达与传统音乐美学之间找到平衡。'],
+  'ps-bt2':            ['The project spanned five pieces, including a poster, invitation, and folded program. Despite their different formats and functions, each piece was designed to feel like part of a cohesive visual system.', '项目涵盖海报、邀请函及对折节目单等五项设计物料。尽管它们的形式与用途各不相同，却需要通过统一的视觉语言串联起来，共同构成完整的音乐会体验。'],
+  'ps-sl2':            ['The concept', '设计概念'],
+  'ps-st2':            ['Maple, ink, and the warmth of strings', '枫叶、水墨，与丝弦的温度'],
+  'ps-bt3':            ['The visual system was built around autumn maple leaves, paired with a vermilion-red palette and ink-wash textures. The falling leaves introduce rhythm and movement, while the warm red tones reinforce the recital\'s sense of ceremony. Together, these elements create a cohesive identity that reflects both the season and the character of the performance.', '我选择将整个视觉系统围绕秋日枫叶展开，并搭配朱砂红与水墨肌理作为主要视觉语言。飘落的枫叶为画面带来节奏与层次，温暖的红色则强化了音乐会的仪式感。这样的组合既呼应了演出的季节背景，也让不同物料在视觉上保持统一。'],
+  'ps-pq1':            ['“Every piece was designed to feel like it came from the same autumn — sharing the same red palette, the same drifting maple leaves, and the same quiet sense of warmth.”', '“我希望每一件物料都像来自同一个秋天——共享同样的色彩、同样的枫叶意象，以及同一种安静而克制的情绪。”'],
+  'ps-pq1-cite':       ['— Design intent', '— 设计理念'],
+  'ps-bt4':            ['Calligraphic titles and vertical typography became key elements throughout the system, bringing a distinct sense of Chinese aesthetics while naturally complementing the character of the guzheng. At the same time, they helped balance cultural expression with clarity across different formats.', '书法标题与竖排版式为整套设计赋予了鲜明的东方韵味，与古筝音乐的气质自然呼应。在营造文化氛围的同时，也兼顾了不同物料中的信息传达与阅读体验。'],
+  'ps-sl3':            ['The system', '视觉系统'],
+  'ps-st3':            ['Palette, type, and motif — three elements, one language', '色彩、字体与枫叶意象——共同构建一套统一的视觉语言。'],
+  'ps-ft1':            ['Palette &amp; Motif', '色彩与主题'],
+  'ps-fti1':           ['Vermilion red, maple, ink', '朱砂红、枫叶、水墨'],
+  'ps-fd1':            ['A warm vermilion red over aged-paper cream, with scattered maple leaves and ink-splatter accents recurring across every piece. The palette stays consistent so the materials read as one family at a glance.', '以朱砂暖红与宣纸米色为主色调，搭配贯穿全系列的枫叶意象与水墨肌理，共同构成统一的视觉基调。无论海报、邀请函还是节目单，都能在保持各自功能的同时呈现一致的视觉气质。'],
+  'ps-ft2':            ['Typography', '文字系统'],
+  'ps-fti2':           ['Calligraphy meets vertical type', '书法字体与竖排版式'],
+  'ps-fd2':            ['Expressive brush-calligraphy titles are paired with clean vertical Chinese typography, creating a balance between cultural character and readability. The result feels rooted in tradition while remaining clear and functional across invitations, programs, and promotional materials.', '毛笔书法标题与简洁的中文竖排文字相结合，在传统韵味与现代可读性之间取得平衡。既保留了古筝音乐所承载的文化气质，也确保了邀请函、节目单等不同物料中的信息清晰易读。'],
+  'ps-ft3':            ['Visual Elements', '视觉元素'],
+  'ps-fti3':           ['Performer, blended into the season', '演奏者，自然的融入秋色'],
+  'ps-fd3':            ['Portraits of the performer are blended into the ink-and-maple backgrounds with soft duotones, so the photography feels painted into the world rather than dropped on top of it.', '演奏者肖像经过柔和的双色调处理，与水墨纹理和枫叶意象相互交织。这样的处理方式让其成为视觉语言的一部分，而非简单叠加于版面之上。'],
+  'ps-sl4':            ['The pieces', '成品展示'],
+  'ps-st4':            ['Five pieces, one autumn', '五种载体，一套视觉语言。'],
+  'ps-sublabel-invitation': ['Invitation', '邀请函'],
+  'ps-sublabel-program':    ['Program', '节目单'],
+  'ps-piece1-label':   ['Main Poster — vertical event poster', '主海报 — 竖版宣传海报'],
+  'ps-piece2-label':   ['Outer page', '外页'],
+  'ps-piece3-label':   ['Inner page', '内页'],
+  'ps-piece4-label':   ['Outer page', '外页'],
+  'ps-piece5-label':   ['Inner page', '内页'],
+  'ps-cta-title':      ['Like the warmth in this work?', '喜欢这套作品的温度？'],
+  'ps-cta-sub':        ['This was one of several client print projects. Reach out to see more visual &amp; illustration work, or to talk about a commission.', '这是我多个商业平面项目之一。欢迎联系我，查看更多视觉与插画作品，或洽谈合作。'],
+  'ps-cta-btn':        ['Get in touch ↗', '联系我 ↗'],
+  'ps-cta-back':       ['← Back to portfolio', '← 返回作品集'],
+  'ps-footer-copy':    ['© 2025 Willa Wei · UX & Visual Designer', '© 2025 薇拉·魏（魏卓萱）· UX 设计师 / 视觉设计师'],
+  'ps-footer-top':     ['Back to top ↑', '返回顶部 ↑'],
+};
+
+(function() {
+  const overlay   = document.getElementById('ps-lightbox');
+  const lightImg  = document.getElementById('ps-lightbox-img');
+  const closeBtn  = document.getElementById('ps-lightbox-close');
+
+  function openLightbox(src, alt) {
+    lightImg.src = src;
+    lightImg.alt = alt;
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('.piece-img img').forEach(function(img) {
+    img.addEventListener('click', function() { openLightbox(img.src, img.alt); });
+  });
+  overlay.addEventListener('click', function(e) { if (e.target === overlay) closeLightbox(); });
+  closeBtn.addEventListener('click', closeLightbox);
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && overlay.classList.contains('open')) closeLightbox();
+  });
+})();
+
+let psLang = 'en';
+function togglePSLang() {
+  psLang = psLang === 'en' ? 'zh' : 'en';
+  const i = psLang === 'en' ? 0 : 1;
+  document.getElementById('ps-lang-toggle').textContent = psLang === 'en' ? '中文模式' : 'English Mode';
+  for (const id in psT) {
+    const el = document.getElementById(id);
+    if (el) el.innerHTML = psT[id][i];
+  }
+}
+</script>
+</body>
+</html>
